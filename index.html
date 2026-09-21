@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#5b56f7">
-<title>ANAS Learning Hub · V10 · British IPA Learning</title>
+<title>ANAS Learning Hub · V10.1 · Mobile Learning Focus</title>
 <style>
 :root{
   --ink:#16213f;--muted:#6b7590;--bg:#f5f7ff;--line:#e7eaf6;
@@ -159,57 +159,31 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 }
 
 
-.voice-toolbar{
-  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 15px;padding:10px 12px;
-  border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#fbfbff,#f6fbff)
+/* ---------- Focused learning audio controls ---------- */
+.learning-audio-bar{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;
+  margin:0 0 14px;padding:8px;border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(135deg,#fbfbff,#f6fbff)
 }
-.voice-toolbar .voice-label{font-size:11px;font-weight:1000;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.voice-select,.speed-select{
-  border:1px solid var(--line);border-radius:11px;background:#fff;padding:8px 10px;font-weight:900;color:var(--ink)
+.learning-audio-btn{
+  min-height:42px;border:0;border-radius:11px;padding:9px 10px;font-weight:1000;
+  background:#eef0ff;color:#514bea;white-space:nowrap
 }
-.voice-status{
-  display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border-radius:10px;background:#eaf9f2;color:#16734e;
-  font-size:11px;font-weight:1000
+.learning-audio-btn.slow{background:#fff4dc;color:#8b6200}
+.learning-audio-btn.ipa{background:#f2efff;color:#584ac6}
+.learning-audio-btn.speak{background:var(--ink);color:#fff}
+.speak-ipa{
+  min-height:24px;margin:8px auto 2px;color:#4f5b76;font:900 clamp(17px,3vw,22px)/1.35 Georgia,"Times New Roman",serif;
+  overflow-wrap:anywhere
 }
-.voice-status.fallback{background:#fff4dc;color:#8b6200}
-
-.listen-mode{
-  border:0;border-radius:10px;padding:7px 9px;font-weight:900;background:#eef0ff;color:#514bea
+.audio-default-card{
+  padding:13px 14px;border:1px solid #dfe3f5;border-radius:16px;background:linear-gradient(135deg,#f6f4ff,#effbff)
 }
-.listen-mode.slow{background:#fff4dc;color:#8b6200}
-.listen-mode.compare{background:#eaf9f2;color:#16734e}
-.voice-compare{
-  margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:17px;background:#fafbff
-}
-.voice-compare h4{margin:0 0 10px;font-size:15px}
-.voice-compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.voice-choice{
-  border:1px solid var(--line);border-radius:13px;background:#fff;padding:10px;text-align:left;font-weight:900
-}
-.voice-choice small{display:block;margin-top:3px;color:var(--muted);font-size:10px}
-.phonics-audio-row{
-  display:flex;gap:7px;flex-wrap:wrap;margin-top:10px
-}
+.audio-default-card b{display:block;font-size:15px}
+.audio-default-card span{display:block;margin-top:4px;font-size:12px;font-weight:900;color:#536076}
+.audio-default-card small{display:block;margin-top:5px;color:var(--muted);line-height:1.45}
+.phonics-audio-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
 .phonics-audio-row button{flex:1 1 145px}
-.voice-demo-card{
-  padding:14px;border:1px solid var(--line);border-radius:17px;background:#fbfcff
-}
-.voice-demo-card strong{display:block;font-size:16px}.voice-demo-card p{margin:5px 0 10px;color:var(--muted);font-size:12px}
-
-
-.playback-readout{
-  margin-left:auto;display:inline-flex;align-items:center;gap:6px;min-height:32px;
-  padding:7px 10px;border-radius:11px;background:#f1f3f9;color:#5d6680;
-  font-size:11px;font-weight:1000;white-space:nowrap
-}
-.playback-readout.active{background:#eaf9f2;color:#166f50}
-.playback-readout.slow-active{background:#fff4dc;color:#865f00}
-.speed-proof{
-  display:inline-block;margin-left:5px;padding:2px 6px;border-radius:7px;
-  background:rgba(255,255,255,.72);font-size:9px;font-weight:1000
-}
-
-.listen-mode.natural{background:#f1f2f7;color:#4e566c}
 
 
 /* ---------- Navigation · route focus ---------- */
@@ -226,7 +200,7 @@ html,body{max-width:100%;overflow-x:hidden}
 body{-webkit-text-size-adjust:100%}
 .app,.topbar,.hero,.card,.learn-shell,.learn-main,.sidebar,
 .words,.language-grid,.phonics-grid,.life-grid,.game-grid,.answers,
-.voice-toolbar,.scope-nav,.unit-switcher{min-width:0}
+.learning-audio-bar,.scope-nav,.unit-switcher{min-width:0}
 button,select,input{min-width:0}
 button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 svg,img{max-width:100%}
@@ -295,6 +269,22 @@ svg,img{max-width:100%}
 .pronoun-progress{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:13px}.mastery-dot{width:9px;height:9px;border-radius:50%;background:#dce4ee}.mastery-dot.on{background:var(--pp-mint)}.pronoun-score{margin-left:auto;padding:7px 10px;border-radius:10px;background:#eef3ff;color:#4565bd;font-size:10px;font-weight:1000}.pronoun-feedback{min-height:38px;margin-top:10px;padding:8px 11px;border-radius:12px;background:#fff;color:#677389;font-size:11px;font-weight:900}
 .pronoun-speak-target{margin:10px auto 13px;padding:18px;border-radius:20px;background:#fff;font-size:clamp(28px,5vw,42px);font-weight:1000;line-height:1.25;color:var(--pp-ink);box-shadow:0 9px 22px rgba(43,68,108,.07)}.pronoun-speak-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.pronoun-speak-actions .btn{min-width:150px}
 .pronoun-note{padding:10px 12px;border-radius:14px;background:#fff9df;color:#735b05;font-size:11px;line-height:1.5;margin-top:12px}
+
+.pronoun-bank-dashboard{margin:12px 0 4px;padding:13px;border:1px solid var(--pp-line);border-radius:18px;background:linear-gradient(135deg,#f8fbff,#fffdf5)}
+.pronoun-bank-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.pronoun-bank-stat{padding:9px 10px;border-radius:13px;background:#fff;border:1px solid #e7edf5;text-align:center}
+.pronoun-bank-stat b{display:block;font-size:17px;color:var(--pp-ink)}
+.pronoun-bank-stat small{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:900}
+.pronoun-type-progress{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.pronoun-type-progress span{padding:6px 8px;border-radius:9px;background:#eef3fb;color:#55647d;font-size:9px;font-weight:1000}
+.pronoun-type-progress span.done{background:#e8f9f2;color:#167052}
+.pronoun-cycle-complete{width:min(680px,100%);text-align:center;padding:22px}
+.pronoun-cycle-complete .done-icon{font-size:58px}.pronoun-cycle-complete h3{margin:8px 0;color:var(--pp-ink)}
+.pronoun-cycle-complete p{color:var(--muted);line-height:1.55}
+@media(max-width:560px){
+  .pronoun-bank-dashboard{padding:9px;margin-top:9px}.pronoun-bank-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+  .pronoun-bank-stat{padding:7px}.pronoun-bank-stat b{font-size:15px}.pronoun-type-progress{gap:4px}.pronoun-type-progress span{font-size:8px;padding:5px 6px}
+}
 @media(max-width:960px){.pronoun-game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.example-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:820px){.pronoun-map,.pronoun-levels{grid-template-columns:1fr}.pronoun-hero{padding:22px;border-radius:25px}.pronoun-rule{grid-template-columns:1fr}.pronoun-rule .rule-arrow{transform:rotate(90deg)}.pronoun-options{grid-template-columns:1fr}.pronoun-stage{padding:14px;min-height:360px}.pronoun-question .context{font-size:15px}}
 @media(max-width:560px){.pronoun-hero{padding:18px}.pronoun-hero h2{font-size:39px}.pronoun-world-card{padding:13px;border-radius:21px}.example-strip,.pronoun-game-grid{grid-template-columns:1fr}.pronoun-person{width:66px;height:66px;font-size:36px}.pronoun-token{font-size:28px}.pronoun-stage{padding:11px;min-height:350px}.pronoun-question h3{font-size:24px}.pronoun-option{font-size:20px;padding:13px}.pronoun-scene{font-size:57px}.pronoun-scene .scene-object{font-size:39px}}
@@ -487,17 +477,8 @@ svg,img{max-width:100%}
   }
   .scope-nav button{padding:9px 10px;font-size:11px}
 
-  .voice-toolbar{
-    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-    gap:7px;padding:9px;border-radius:15px
-  }
-  .voice-toolbar .voice-label{display:none}
-  .voice-select,.speed-select{width:100%;padding:9px;font-size:12px}
-  .listen-mode{min-height:42px;padding:9px 8px;font-size:11px}
-  .listen-mode.compare{grid-column:1/-1}
-  .voice-status,.playback-readout{
-    margin:0;justify-content:center;text-align:center;white-space:normal;min-height:34px
-  }
+  .learning-audio-bar{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:7px}
+  .learning-audio-btn{min-height:42px;padding:8px 6px;font-size:11px}
 
   .words{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .word-card{padding:10px;border-radius:16px}
@@ -525,8 +506,6 @@ svg,img{max-width:100%}
   .coach,.score-panel{padding:17px;border-radius:22px}
   .target{font-size:clamp(34px,10vw,47px);overflow-wrap:anywhere}
   .target-icon{font-size:59px}
-  .voice-compare{padding:11px}
-  .voice-compare-grid{grid-template-columns:1fr}
   .mic-ring{width:104px;height:104px;margin-top:18px}
   .mic-button{width:76px;height:76px}
   .score-ring{width:145px;height:145px}
@@ -578,10 +557,8 @@ svg,img{max-width:100%}
   .lesson-intro p{font-size:12px}
   .scope-nav{top:62px}
 
-  .voice-toolbar{grid-template-columns:1fr 1fr;padding:8px}
-  .voice-select,.speed-select{grid-column:span 1}
-  .voice-status,.playback-readout{font-size:9px;padding:6px}
-  .speed-proof{display:none}
+  .learning-audio-bar{grid-template-columns:repeat(2,minmax(0,1fr));padding:6px;gap:6px;margin-bottom:10px}
+  .learning-audio-btn{min-height:43px;font-size:11px}
 
   .words{grid-template-columns:repeat(2,minmax(0,1fr))}
   .word-card .pic{height:58px}
@@ -606,7 +583,6 @@ svg,img{max-width:100%}
 
   .row-actions{display:grid;grid-template-columns:1fr}
   .row-actions .btn{width:100%}
-  .voice-choice{padding:9px}
 }
 
 /* ---------- Very small phones ---------- */
@@ -617,8 +593,8 @@ svg,img{max-width:100%}
   .hero h2{font-size:34px}
   .words{grid-template-columns:1fr}
   .coverage-mini{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .voice-toolbar{grid-template-columns:1fr}
-  .voice-select,.speed-select,.listen-mode,.voice-status,.playback-readout{grid-column:1/-1}
+  .learning-audio-bar{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .learning-audio-btn{font-size:10px;padding:8px 4px}
   .phonics-audio-row{grid-template-columns:1fr}
   .sound-words{grid-template-columns:repeat(3,minmax(0,1fr))}
   .number-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -679,7 +655,7 @@ svg,img{max-width:100%}
 
 
 
-/* ---------- V10 · British IPA Learning ---------- */
+/* ---------- V10.1 · British IPA + Mobile Learning Focus ---------- */
 .ipa-text{
   display:inline-flex;align-items:center;justify-content:center;min-height:27px;margin-top:5px;
   padding:4px 8px;border:0;border-radius:9px;background:#f2f5ff;color:#3d57a7;
@@ -737,7 +713,7 @@ svg,img{max-width:100%}
 <body>
 <div class="app">
 <header class="topbar">
-  <div class="brand"><div class="logo">🚀</div><div><h1>ANAS LEARNING HUB</h1><small>Primary 1 · V10 · British IPA Learning · 2026/2027</small></div></div>
+  <div class="brand"><div class="logo">🚀</div><div><h1>ANAS LEARNING HUB</h1><small>Primary 1 · V10.1 · Mobile Learning Focus · 2026/2027</small></div></div>
   <div class="subjects"><button class="subject active" data-route="home" data-subject="english">🇬🇧 English</button><button class="subject" data-route="math" data-subject="math">🔢 Math</button><button class="subject" data-route="story" data-subject="story">📖 قراءة سريعة</button><button class="subject" data-action="future" data-value="Discover">🔬 Discover</button><button class="subject" data-route="arabic" data-subject="arabic">🪴 العربية</button></div>
   <div class="header-stats"><div class="pill">⭐ <span id="headerStars">0</span></div><div class="pill">⚡ <span id="headerXp">0</span> XP</div></div>
 </header>
@@ -799,24 +775,14 @@ svg,img{max-width:100%}
     </aside>
     <div class="card learn-main">
       <div class="unit-switcher" id="unitSwitcher"></div>
-      <div class="voice-toolbar">
-        <span class="voice-label">Voice</span>
-        <select id="quickVoice" class="voice-select" aria-label="Learning voice"></select>
-        <span class="voice-label">Default speed</span>
-        <select id="quickSpeed" class="speed-select" aria-label="Learning speed">
-          <option value="slow">🐢 Slow</option>
-          <option value="learning">🎓 Learning</option>
-          <option value="natural">▶ Natural</option>
-        </select>
-        <button class="listen-mode slow" data-action="play-section-slow">🐢 Slow now <span class="speed-proof">~0.56×</span></button>
-        <button class="listen-mode natural" data-action="play-section-natural">▶ Natural</button>
-        <button class="listen-mode compare" data-action="compare-section">👥 Compare voices</button>
-        <span id="voiceStatus" class="voice-status fallback">Browser fallback</span>
-        <span id="playbackReadout" class="playback-readout">Ready</span>
+      <div class="learning-audio-bar" aria-label="Learning audio controls">
+        <button class="learning-audio-btn" data-action="play-section-learning">🔊 Listen</button>
+        <button class="learning-audio-btn slow" data-action="play-section-slow">🐢 Slow</button>
+        <button class="learning-audio-btn ipa" data-action="scope" data-scope="ipa">/IPA/ Review</button>
+        <button class="learning-audio-btn speak" data-action="speak-section">🎤 Speak</button>
       </div>
       <div class="lesson-heading">
         <div><span class="chip official" id="unitChip">UNIT</span><h2 id="learnTitle">Vocabulary</h2><p id="learnSubtitle"></p></div>
-        <button class="btn dark" data-action="speak-section">🎤 Speaking practice</button>
       </div>
       <div class="scope-nav" id="scopeNav"></div>
       <div id="learnContent"></div>
@@ -849,16 +815,12 @@ svg,img{max-width:100%}
 <section id="speakPage" class="page">
   <div class="speak-layout">
     <div class="card coach">
-      <span class="chip" id="coachMode">BROWSER COACH</span>
+      <span class="chip">SPEAKING PRACTICE</span>
       <div class="target-icon" id="speakIcon">🎤</div>
       <div class="target" id="speakTarget">Hello!</div>
       <div class="hint">Listen first. Then say the complete target.</div>
-      <div class="voice-compare">
-        <h4>👥 Compare the same target</h4>
-        <div class="voice-compare-grid" id="speakCompareGrid"></div>
-      </div>
-      <p class="muted">Browser Coach checks recognition. Azure can be connected securely later for detailed pronunciation scoring.</p>
-      <div class="row-actions" style="justify-content:center"><button class="btn soft" data-action="speak-target">🔊 Selected speed</button><button class="btn orange" data-action="speak-target-slow">🐢 Slow</button><button class="btn outline" data-action="back-to-learn">← Back to lesson</button></div>
+      <div class="speak-ipa" id="speakIpa"></div>
+      <div class="row-actions" style="justify-content:center"><button class="btn soft" data-action="speak-target">🔊 Listen</button><button class="btn orange" data-action="speak-target-slow">🐢 Slow</button><button class="btn outline" data-action="back-to-learn">← Back to lesson</button></div>
       <div class="mic-ring"><button class="mic-button" id="micButton" data-action="mic">🎤</button></div>
       <div id="coachStatus" style="font-weight:1000;min-height:24px">Tap the microphone when you're ready.</div><div id="heardText" class="tiny muted"></div>
     </div>
@@ -961,12 +923,13 @@ svg,img{max-width:100%}
   </div>
 
   <div class="pronoun-world-card">
-    <div class="pronoun-section-title"><div><h3>Example World</h3><p>Different people + different objects. Listen, compare, and say the sentence.</p></div><span class="chip">9 EXAMPLES</span></div>
+    <div class="pronoun-section-title"><div><h3>Example World</h3><p>Many short examples with the same three pronoun families. Listen, compare, and say the sentence.</p></div><span class="chip" id="pronounExampleCount">36 EXAMPLES</span></div>
     <div class="example-strip" id="pronounExamples"></div>
   </div>
 
   <div class="pronoun-world-card">
-    <div class="pronoun-section-title"><div><h3>Smart Practice</h3><p>Questions recycle weak pairs more often and avoid immediate repetition.</p></div><span class="chip verified" id="pronounPairMastery">ADAPTIVE</span></div>
+    <div class="pronoun-section-title"><div><h3>Smart Practice</h3><p>100 fixed questions with unique IDs. A question never repeats before the current bank cycle is complete.</p></div><span class="chip verified" id="pronounPairMastery">ADAPTIVE</span></div>
+    <div class="pronoun-bank-dashboard" id="pronounBankDashboard"></div>
     <div class="pronoun-tabs" id="pronounTabs"></div>
     <div class="pronoun-game-grid" id="pronounGameGrid"></div>
     <div class="pronoun-stage" id="pronounStage">
@@ -1041,16 +1004,12 @@ svg,img{max-width:100%}
       <div id="auditTable"></div>
     </div>
     <div class="card panel">
-      <div class="section-head"><div><h3>🎧 Voice Learning Engine</h3><p>Reference voice, speed, comparison and pronunciation assessment.</p></div><span class="chip official">V6.3</span></div>
+      <div class="section-head"><div><h3>🎧 Speech Engine</h3><p>Fixed learning voice with secure listening and pronunciation backends.</p></div><span class="chip official">FIXED · en-GB</span></div>
 
-      <div class="field"><label>Accent / locale</label><select id="locale"><option value="en-GB">🇬🇧 British English · Default</option><option value="en-US">🇺🇸 American English</option></select></div>
-      <div class="field"><label>Default learning voice</label><select id="voiceId"></select></div>
-      <div class="field"><label>Default learning speed</label><select id="speedId"><option value="slow">🐢 Slow</option><option value="learning">🎓 Learning · Recommended</option><option value="natural">▶ Natural</option></select></div>
-
-      <div class="voice-demo-card">
-        <strong>Voice comparison</strong>
-        <p>Hear the same word with three different voices. The adult clear teacher remains the reference voice.</p>
-        <div class="voice-compare-grid" id="voiceDemoGrid"></div>
+      <div class="audio-default-card">
+        <b>Default learning audio</b>
+        <span>British English · Teacher reference · Learning speed</span>
+        <small>Voice and accent switching are intentionally removed from the learner interface.</small>
       </div>
 
       <div class="divider"></div>
@@ -1060,7 +1019,7 @@ svg,img{max-width:100%}
       <div class="field"><label>Secure Azure Pronunciation Assessment proxy</label><input id="proxyUrl" placeholder="https://your-domain.example/api/pronunciation"></div>
       <div class="tiny muted">The API key stays on the server. It is never stored in this HTML.</div>
 
-      <button class="btn dark" data-action="save-settings" style="margin-top:12px">Save voice settings</button>
+      <button class="btn dark" data-action="save-settings" style="margin-top:12px">Save speech backend</button>
     </div>
     <div class="card panel" dir="rtl">
       <div class="section-head"><div><h3>🪴 تدقيق منهج العربية</h3><p>Grade 1 · Language Schools · 2026–2027</p></div><span class="chip verified">28/28 حرفًا</span></div>
@@ -1068,7 +1027,7 @@ svg,img{max-width:100%}
       <div class="tiny muted" style="margin-top:10px;line-height:1.8">مرجع البناء: منهج وزارة التربية والتعليم هو حد المحتوى. الكتب الخارجية استُخدمت فقط لتوسيع أنماط التدريب والوعي الصوتي والتحليل والتركيب، دون نسخ محتواها.</div>
     </div>
     <div class="card panel" dir="rtl">
-      <div class="section-head"><div><h3>📖 القراءة السريعة</h3><p>Word-focus Arabic reading · concise offline cards</p></div><span class="chip verified">V2 · 20</span></div>
+      <div class="section-head"><div><h3>📖 القراءة السريعة</h3><p>Word-focus Arabic reading · concise offline cards</p></div><span class="chip verified">V4 · 100</span></div>
       <div id="parentReadingStats"></div>
       <div class="tiny muted" style="margin-top:10px;line-height:1.7">كل بطاقة تحتوي على جملة أو جملتين فقط. النص الأساسي بلا تشكيل، والتشكيل والمقاطع يظهران عند لمس الكلمة.</div>
     </div>
@@ -1090,7 +1049,7 @@ svg,img{max-width:100%}
 const CURRICULUM = [{"id":1,"title":"Welcome to My School","icon":"🏫","theme":"school","vocabulary":[["Hello!","👋"],["Goodbye!","🙋"],["play","⚽"],["friends","🧒👧"],["bag","🎒"],["shake hands","🤝"],["teacher","🧑‍🏫"],["board","⬛"],["desk","🪑"],["chair","🪑"],["book","📘"],["pencil","✏️"]],"language":["What's your name?","My name is....","I'm ....","We are friends.","Stand up.","Sit down.","Open your book."],"phonics":[{"letter":"Tt","sound":"/t/","words":[["tomato","🍅"],["table","🪑"],["tree","🌳"]]},{"letter":"Ii","sound":"/i/","words":[["ink","🖋️"],["insect","🐞"],["ill","🤒"]]}],"lifeSkills":["Using simple greetings","Following classroom instructions","Describing objects and actions","Expressing oneself and making friends"],"specialGame":"Classroom Commander"},{"id":2,"title":"The Garden of Colors and Shapes","icon":"🌈","theme":"garden","vocabulary":[["grass","🌱"],["flower","🌸"],["tree","🌳"],["sky","🌤️"],["bird","🐦"],["butterfly","🦋"],["circle","⚪"],["square","🟦"],["triangle","🔺"],["rectangle","▭"],["green","🟢"],["blue","🔵"],["red","🔴"],["yellow","🟡"]],"language":["I can see....","What's this?","This is a....","The grass is green.","The sky is blue.","The sun is yellow.","The flower is red.","The butterfly is flying."],"phonics":[{"letter":"Ss","sound":"/s/","words":[["sun","☀️"],["star","⭐"],["snake","🐍"]]},{"letter":"Aa","sound":"/æ/","words":[["ant","🐜"],["axe","🪓"],["apple","🍎"]]}],"lifeSkills":["Paying attention to surrounding","Asking and answering questions","Identifying colors and shapes"],"specialGame":"Color & Shape Garden"},{"id":3,"title":"I Love My Family","icon":"❤️","theme":"family","vocabulary":[["parents","👨‍👩‍👦"],["father","👨"],["mother","👩"],["sister","👧"],["brother","👦"],["grandmother","👵"],["grandfather","👴"]],"numbers":[["1","one","1️⃣"],["2","two","2️⃣"],["3","three","3️⃣"],["4","four","4️⃣"],["5","five","5️⃣"]],"language":["Who's this?","This is my....","How many....?","There are 4....","I have 1 brother.","I have 2 sisters.","There is 1 butterfly.","There are 3 birds.","I see 5 trees."],"phonics":[{"letter":"Nn","sound":"/n/","words":[["nose","👃"],["neck","🧣"],["net","🥅"]]},{"letter":"Pp","sound":"/p/","words":[["pencil","✏️"],["pizza","🍕"],["panda","🐼"]]},{"letter":"Hh","sound":"/h/","words":[["hat","🎩"],["hair","💇"],["horse","🐎"]]},{"letter":"Dd","sound":"/d/","words":[["door","🚪"],["dog","🐶"],["drum","🥁"]]}],"lifeSkills":["Introducing family members","Asking and answering questions","Identifying numbers and their values","Counting objects and using numbers in sentences"],"specialGame":"Family Counter"},{"id":4,"title":"My Body and My Senses","icon":"👀","theme":"body","vocabulary":[["head","🙂"],["eyes","👀"],["ears","👂"],["nose","👃"],["mouth","👄"],["tongue","👅"],["arm(s)","💪"],["hand(s)","✋"],["leg(s)","🦵"],["foot/feet","🦶"],["toe(s)","🦶"],["see","👀"],["hear","👂"],["smell","👃"],["taste","👅"],["touch","✋"]],"language":["I have 1 nose.","I have 1 mouth.","I have 2 eyes.","I have 2 ears.","I can see with my eyes.","I can hear with my ears.","I can taste with my tongue.","I can smell with my nose.","I can touch with my hands."],"phonics":[{"letter":"Rr","sound":"/r/","words":[["red","🔴"],["rabbit","🐇"],["rocket","🚀"]]},{"letter":"Ee","sound":"/e/","words":[["egg","🥚"],["elephant","🐘"],["elbow","💪"]]},{"letter":"Cc","sound":"/k/","words":[["cat","🐱"],["cake","🍰"],["cup","🥤"]]},{"letter":"Kk","sound":"/k/","words":[["kite","🪁"],["king","👑"],["kitchen","🍳"]]}],"lifeSkills":["Identifying and counting body parts","Self-awareness","Identifying and describing senses","Understanding body functions"],"specialGame":"Sense Detective"},{"id":5,"title":"On the Farm","icon":"🚜","theme":"farm","vocabulary":[["farm","🚜"],["cow","🐄"],["horse","🐎"],["duck","🦆"],["chicken","🐔"],["milk","🥛"],["cheese","🧀"],["meat","🥩"],["eggs","🥚"],["big","🐘"],["small","🐥"]],"numbers":[["6","six","6️⃣"],["7","seven","7️⃣"],["8","eight","8️⃣"],["9","nine","9️⃣"],["10","ten","🔟"]],"language":["The cow gives us milk, cheese and meat.","The chicken gives us eggs.","The cow is big.","The horse is big.","The duck is small.","The chicken is small.","How many horses can you see?","I can see .... horses.","Count the ducks.","There are .... ducks."],"phonics":[{"letter":"Mm","sound":"/m/","words":[["moon","🌙"],["milk","🥛"],["monkey","🐒"]]},{"letter":"Gg","sound":"/g/","words":[["goat","🐐"],["girl","👧"],["grapes","🍇"]]},{"letter":"Oo","sound":"/ɑ/","words":[["octopus","🐙"],["on","⬆️"],["ostrich","🪶"]]},{"letter":"Ff","sound":"/f/","words":[["fish","🐟"],["fan","🪭"],["frog","🐸"]]}],"lifeSkills":["Identifying and describing farm animals","Understanding food origins","Comparing and differentiating sizes","Identifying numbers and their values","Counting objects and using numbers in sentences"],"specialGame":"Farm Food Detective"},{"id":6,"title":"Animals Around Me","icon":"🦁","theme":"animals","vocabulary":[["pets","🐾"],["cat","🐱"],["dog","🐶"],["turtle","🐢"],["bird","🐦"],["jungle","🌴"],["lion","🦁"],["tiger","🐯"],["elephant","🐘"],["monkey","🐒"],["giraffe","🦒"],["snake","🐍"]],"language":["Where is the ....?","in","on","under","The cat is under the chair.","The dog is on the sofa.","The bird is in the cage.","The lion has 4 legs.","The tiger has 4 legs.","The monkey has 2 legs."],"phonics":[{"letter":"Bb","sound":"/b/","words":[["boy","👦"],["ball","⚽"],["banana","🍌"]]},{"letter":"Ll","sound":"/l/","words":[["lamp","💡"],["leaf","🍃"],["lion","🦁"]]},{"letter":"Uu","sound":"/ʌ/","words":[["under","⬇️"],["up","⬆️"],["umbrella","☂️"]]},{"letter":"Jj","sound":"/dʒ/","words":[["jar","🫙"],["jam","🍓"],["jacket","🧥"]]}],"lifeSkills":["Identifying and describing jungle animals","Identifying domestic animals (pets)","Grouping animals based on features","Introducing prepositions","Understanding position and space"],"specialGame":"Animal Position Challenge"}];
 
 
-// ---------- V10 · British IPA Learning ----------
+// ---------- V10.1 · British IPA + Mobile Learning Focus ----------
 // Central lexicon: one source of truth for English learning content.
 const IPA_LEXICON = Object.freeze({
   "a":"ə","actions":"ˈækʃənz","and":"ænd","animals":"ˈænɪməlz","answering":"ˈɑːnsərɪŋ","ant":"ænt","apple":"ˈæpəl","are":"ɑː","arm":"ɑːm","asking":"ˈɑːskɪŋ","attention":"əˈtenʃən","awareness":"əˈweənəs","axe":"æks",
@@ -1881,7 +1840,7 @@ class MathQuestionScheduler {
 }
 
 const PRONOUN_MODULE = Object.freeze({
-  version:2,
+  version:3,
   title:"Pronoun Power · WHO & WHOSE",
   futureExpansion:["you/your","we/our","they/their"],
   levels:[
@@ -1903,7 +1862,10 @@ const PRONOUN_MODULE = Object.freeze({
     {id:"cat",label:"cat",icon:"🐱",color:"white"},
     {id:"lunchbox",label:"lunchbox",icon:"🍱",color:"purple"},
     {id:"hat",label:"hat",icon:"🧢",color:"blue"},
-    {id:"kite",label:"kite",icon:"🪁",color:"yellow"}
+    {id:"kite",label:"kite",icon:"🪁",color:"yellow"},
+    {id:"doll",label:"doll",icon:"🪆",color:"pink"},
+    {id:"ruler",label:"ruler",icon:"📏",color:"green"},
+    {id:"shoes",label:"shoes",icon:"👟",color:"black"}
   ],
   games:[
     {id:"who",minLevel:1,icon:"👤",title:"WHO?",desc:"Choose I, he or she from the person scene.",tag:"RECOGNITION"},
@@ -1917,6 +1879,56 @@ const PRONOUN_MODULE = Object.freeze({
     {id:"mix",minLevel:3,icon:"⚡",title:"Fast Mix",desc:"WHO, WHOSE, listening and repair mixed together.",tag:"RETRIEVAL"}
   ]
 });
+
+function buildPronounQuestionBank(){
+  const pairs=PRONOUN_MODULE.pairs,objects=PRONOUN_MODULE.objects;
+  const combos=objects.flatMap(o=>pairs.map(p=>({p,o})));
+  const quotas={who:15,whose:15,pair:10,listen:12,builder:16,dialogue:14,repair:18};
+  const offsets={who:0,whose:6,pair:12,listen:18,builder:3,dialogue:9,repair:15};
+  const levelFor={who:1,whose:1,pair:1,listen:1,builder:2,dialogue:2,repair:3};
+  const bank=[];let serial=1;
+  const options={subject:['I','he','she'],possessive:['my','his','her']};
+  const cap=x=>x.charAt(0).toUpperCase()+x.slice(1);
+  const add=(type,p,o,variant)=>{
+    const id=`PP-Q-${String(serial++).padStart(3,'0')}`;
+    const common={id,type,level:levelFor[type],pair:p.id,icon:p.icon,objectIcon:o.icon};
+    let q;
+    if(type==='who'){
+      const context=p.id==='self'?`${p.person} is speaking: “___ am ready.”`:`${p.person} is in the picture. ___ is ready.`;
+      q={...common,title:'WHO?',prompt:'Which word talks about this person?',context,options:options.subject,correct:p.subject,readText:`Which word talks about ${p.person}?`,explanation:p.id==='self'?`${p.person} is speaking → use I.`:`${p.person} is one person → use ${p.subject}.`};
+    }else if(type==='whose'){
+      q={...common,title:'WHOSE?',prompt:'Which word shows who owns it?',context:`${p.person} owns this ${o.label}. ___ ${o.label} is ${o.color}.`,options:options.possessive,correct:p.possessive,readText:`${p.person} owns this ${o.label}. Which ownership word fits?`,explanation:`${p.person} owns it → use ${p.possessive}.`};
+    }else if(type==='pair'){
+      q={...common,title:'PAIR MATCH',prompt:`Which ownership word belongs with “${p.subject}”?`,context:`${p.subject} → ?`,options:options.possessive,correct:p.possessive,readText:`Which ownership word belongs with ${p.subject}?`,explanation:`Keep the family together: ${p.subject} → ${p.possessive}.`};
+    }else if(type==='listen'){
+      const sentence=`${cap(p.possessive)} ${o.label} is ${o.color}.`;
+      q={...common,title:'LISTEN & CATCH',prompt:'Listen. Which ownership word did you hear?',context:'Use your ears first, then choose.',options:options.possessive,correct:p.possessive,listenText:sentence,readText:'Listen and catch the ownership word.',explanation:`The sentence says “${cap(p.possessive)} ${o.label}” → ${p.possessive}.`};
+    }else if(type==='builder'){
+      const frames=[`${p.person} owns it. ___ ${o.label} is ${o.color}.`,`This ${o.label} belongs to ${p.person}. It is ___ ${o.label}.`];
+      q={...common,title:'SENTENCE BUILDER',prompt:'Complete the sentence.',context:frames[variant%2],options:options.possessive,correct:p.possessive,readText:`Complete the sentence about ${p.person} and the ${o.label}.`,explanation:`Ownership for ${p.subject} uses ${p.possessive}.`};
+    }else if(type==='dialogue'){
+      const subjectMode=variant%2===1;
+      q=subjectMode
+        ? {...common,title:'MINI TALK',prompt:`“Who is ${p.person}?”`,context:`“___ ${p.be} ${p.person}.”`,options:options.subject,correct:p.subject,readText:`Who is ${p.person}?`,explanation:`WHO asks about the person → ${p.subject}.`}
+        : {...common,title:'MINI TALK',prompt:`“Whose ${o.label} is this?”`,context:`“It is ___ ${o.label}.”`,options:options.possessive,correct:p.possessive,readText:`Whose ${o.label} is this?`,explanation:`WHOSE asks about ownership → ${p.possessive}.`};
+    }else{
+      const wrong=options.possessive[(options.possessive.indexOf(p.possessive)+1+(variant%2))%3];
+      q={...common,title:'FIX ONE WORD',prompt:'One word is wrong. What should replace it?',context:`${p.subjectSentence} ${cap(wrong)} ${o.label} is ${o.color}.`,options:options.possessive,correct:p.possessive,readText:`Find the wrong ownership word in this sentence.`,explanation:`${p.subject} must stay with ${p.possessive}, not ${wrong}.`};
+    }
+    bank.push(Object.freeze(q));
+  };
+  Object.entries(quotas).forEach(([type,count])=>{
+    const offset=offsets[type];
+    for(let i=0;i<count;i++){
+      const {p,o}=combos[(offset+i)%combos.length];
+      add(type,p,o,i);
+    }
+  });
+  if(bank.length!==100)throw new Error(`Pronoun question bank expected 100, got ${bank.length}`);
+  return bank;
+}
+const PRONOUN_QUESTION_BANK=Object.freeze(buildPronounQuestionBank());
+const PRONOUN_QUESTION_TYPES=Object.freeze(['who','whose','pair','listen','builder','dialogue','repair']);
 
 
 const QUICK_READING_VERSION = 4;
@@ -2052,24 +2064,19 @@ const QUICK_READING = Object.freeze([
   F("f100","اختراعات","الرُّوبُوتُ يُنَفِّذُ أَوَامِرَ مُبَرْمَجَةً.")
 ]);
 
-const VOICE_CATALOG = {
-  "ar-EG":[
-    {id:"arabic-reading",label:"Salma · Arabic",azure:"ar-EG-SalmaNeural",gender:"female"},
-    {id:"arabic-male",label:"Shakir · Arabic",azure:"ar-EG-ShakirNeural",gender:"male"}
-  ],
-  "en-GB": [
-    {id:"teacher-clear", label:"Teacher · Clear", short:"Sonia", azure:"en-GB-SoniaNeural", gender:"Female", role:"Primary reference", icon:"👩‍🏫"},
-    {id:"kid-buddy", label:"Kid Buddy", short:"Maisie", azure:"en-GB-MaisieNeural", gender:"Child", role:"Child listening variety", icon:"👧"},
-    {id:"teacher-male", label:"Teacher · Male", short:"Ryan", azure:"en-GB-RyanNeural", gender:"Male", role:"Male reference", icon:"👨‍🏫"},
-    {id:"teacher-alt", label:"Teacher · Alternative", short:"Libby", azure:"en-GB-LibbyNeural", gender:"Female", role:"Alternative reference", icon:"👩"}
-  ],
-  "en-US": [
-    {id:"teacher-clear", label:"Teacher · Clear", short:"Jenny", azure:"en-US-JennyNeural", gender:"Female", role:"Primary reference", icon:"👩‍🏫"},
-    {id:"kid-buddy", label:"Kid Buddy", short:"Ana", azure:"en-US-AnaNeural", gender:"Child", role:"Child listening variety", icon:"👧"},
-    {id:"teacher-male", label:"Teacher · Male", short:"Guy", azure:"en-US-GuyNeural", gender:"Male", role:"Male reference", icon:"👨‍🏫"},
-    {id:"teacher-alt", label:"Teacher · Alternative", short:"Aria", azure:"en-US-AriaNeural", gender:"Female", role:"Alternative reference", icon:"👩"}
-  ]
-};
+const LEARNING_AUDIO = Object.freeze({
+  english:Object.freeze({locale:"en-GB",voiceId:"teacher-clear",speedId:"learning"}),
+  arabic:Object.freeze({locale:"ar-EG",voiceId:"arabic-reading",speedId:"learning"})
+});
+
+const VOICE_CATALOG = Object.freeze({
+  "en-GB":Object.freeze([
+    Object.freeze({id:"teacher-clear",label:"Teacher · British",short:"Sonia",azure:"en-GB-SoniaNeural",gender:"Female",role:"Primary reference",icon:"👩‍🏫"})
+  ]),
+  "ar-EG":Object.freeze([
+    Object.freeze({id:"arabic-reading",label:"Salma · Arabic",short:"Salma",azure:"ar-EG-SalmaNeural",gender:"Female",role:"Arabic reference",icon:"👩‍🏫"})
+  ])
+});
 
 const SPEED_MODES = Object.freeze({
   slow:Object.freeze({id:"slow",label:"🐢 Slow",azureRate:"-38%",browserWordRate:.56,browserSentenceRate:.66}),
@@ -2098,12 +2105,8 @@ class SpeechService {
   }
 
   settings() {
-    const locale = localStorage.getItem('anasLocale') || 'en-GB';
-    const voiceId = localStorage.getItem('anasVoiceId') || 'teacher-clear';
-    const speedId = localStorage.getItem('anasSpeed') || 'learning';
-    const catalog = VOICE_CATALOG[locale] || VOICE_CATALOG["en-GB"];
-    const voice = catalog.find(v => v.id === voiceId) || catalog[0];
-    return { locale, voice, speedId };
+    const profile=LEARNING_AUDIO.english;
+    return {locale:profile.locale,voice:VOICE_CATALOG[profile.locale][0],speedId:profile.speedId};
   }
 
   resolveSpeed(speedId, text) {
@@ -2148,9 +2151,10 @@ class SpeechService {
     const clean = String(text || '').replace(/\.\.\.\./g,'').trim();
     const base = this.settings();
     const locale = options.locale || base.locale;
-    const catalog = VOICE_CATALOG[locale] || VOICE_CATALOG["en-GB"];
-    const voice = catalog.find(v => v.id === (options.voiceId || base.voice.id)) || catalog[0];
-    const speedId = options.speedId || base.speedId;
+    const profile = locale.startsWith('ar') ? LEARNING_AUDIO.arabic : LEARNING_AUDIO.english;
+    const catalog = VOICE_CATALOG[profile.locale];
+    const voice = catalog.find(v=>v.id===profile.voiceId) || catalog[0];
+    const speedId = options.speedId || profile.speedId;
     const speed = this.resolveSpeed(speedId, clean);
     return Object.freeze({
       text:clean,
@@ -2169,19 +2173,16 @@ class SpeechService {
 
     const token = ++this.playbackToken;
     this.stopBackendsOnly();
-    this.app.setPlaybackReadout(request, 'starting');
 
     const ttsProxy = (localStorage.getItem('anasTtsProxy') || '').trim();
 
     if (ttsProxy) {
       try {
         await this.playAzure(request, ttsProxy, token);
-        if (token === this.playbackToken) this.app.updateVoiceStatus(true);
         return true;
       } catch (err) {
         if (err?.name !== 'AbortError') console.warn('Azure TTS fallback:', err);
         if (token !== this.playbackToken) return false;
-        this.app.updateVoiceStatus(false);
       }
     }
 
@@ -2230,7 +2231,6 @@ class SpeechService {
     const url = URL.createObjectURL(blob);
     const audio = new Audio(url);
     this.audio = audio;
-    this.app.setPlaybackReadout(request, 'playing-azure');
 
     await new Promise((resolve, reject) => {
       audio.onended = resolve;
@@ -2240,18 +2240,13 @@ class SpeechService {
 
     try { URL.revokeObjectURL(url); } catch {}
     if (this.audio === audio) this.audio = null;
-    if (token === this.playbackToken) this.app.setPlaybackReadout(request, 'done');
     return true;
   }
 
   selectBrowserVoice(voices, request) {
     const namesById = {
-      "teacher-clear":["Sonia","Jenny","Google UK English Female","Microsoft Sonia","Microsoft Jenny"],
-      "kid-buddy":["Maisie","Ana"],
-      "teacher-male":["Ryan","Guy","Google UK English Male","Microsoft Ryan","Microsoft Guy"],
-      "teacher-alt":["Libby","Aria","Microsoft Libby","Microsoft Aria"],
-      "arabic-reading":["Salma","Microsoft Salma","Hoda","Microsoft Hoda","Maged","Arabic","العربية"],
-      "arabic-male":["Shakir","Microsoft Shakir","Maged","Arabic Male","العربية"]
+      "teacher-clear":["Sonia","Google UK English Female","Microsoft Sonia"],
+      "arabic-reading":["Salma","Microsoft Salma","Hoda","Microsoft Hoda","Arabic","العربية"]
     };
     const preferredNames = namesById[request.voice.id] || [];
     const exactLocale = String(request.locale).toLowerCase();
@@ -2293,14 +2288,12 @@ class SpeechService {
     const selected = this.selectBrowserVoice(voices, request);
     if (selected) utterance.voice = selected;
 
-    this.app.setPlaybackReadout(request, 'playing-browser');
 
     return new Promise(resolve => {
       let resolved = false;
       const finish = ok => {
         if (resolved) return;
         resolved = true;
-        if (token === this.playbackToken) this.app.setPlaybackReadout(request, 'done');
         resolve(ok);
       };
 
@@ -2322,14 +2315,6 @@ class SpeechService {
     });
   }
 
-  async compare(text) {
-    const ids = ['teacher-clear','kid-buddy','teacher-male'];
-    for (const id of ids) {
-      const ok = await this.speak(text, { voiceId:id, speedId:'learning' });
-      if (!ok) break;
-      await new Promise(r => setTimeout(r, 260));
-    }
-  }
 
   speakLetterName(letterGroup) {
     const letter = String(letterGroup || '').charAt(0).toUpperCase();
@@ -2373,7 +2358,7 @@ class SpeechService {
     const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
     if(!SR) return this.app.toast('Use Chrome/Edge or configure the secure Azure pronunciation proxy.');
     this.recognition=new SR();
-    this.recognition.lang=document.querySelector('#locale')?.value||'en-GB';
+    this.recognition.lang=LEARNING_AUDIO.english.locale;
     this.recognition.interimResults=false;
     this.recognition.maxAlternatives=1;
     this.setMic(true);
@@ -2410,7 +2395,7 @@ class SpeechService {
         const fd=new FormData();
         fd.append('audio',blob,'anas.webm');
         fd.append('referenceText',this.app.speakTarget);
-        fd.append('locale',document.querySelector('#locale')?.value||'en-GB');
+        fd.append('locale',LEARNING_AUDIO.english.locale);
         try{
           const r=await fetch(proxy,{method:'POST',body:fd});
           if(!r.ok)throw new Error(`Pronunciation proxy ${r.status}`);
@@ -2422,8 +2407,8 @@ class SpeechService {
           this.app.touchMastery(this.app.speakTarget,o>=80?2:1);
           if(o>=80)this.app.confetti();
         }catch(err){
-          this.app.$('#coachStatus').textContent='Azure pronunciation coach unavailable.';
-          this.app.$('#coachFeedback').textContent=`Proxy error: ${err.message}`;
+          this.app.$('#coachStatus').textContent='Pronunciation assessment unavailable.';
+          this.app.$('#coachFeedback').textContent='You can still listen and try again.';
         }
       };
       this.mediaRecorder.start();
@@ -2624,10 +2609,8 @@ class AnasApp {
       if(a==='speak-item')return this.openSpeak(el.dataset.text,el.dataset.icon||'🎤');
       if(a==='english-speak')return this.startEnglishSpeak();
       if(a==='speak-section')return this.openSpeak(this.sectionSpeakTarget(),this.unit().icon);
-      if(a==='compare-section')return this.speech.compare(this.sectionSpeakTarget());
+      if(a==='play-section-learning')return this.speech.speak(this.sectionSpeakTarget());
       if(a==='play-section-slow')return this.speech.speak(this.sectionSpeakTarget(),{speedId:'slow'});
-      if(a==='play-section-natural')return this.speech.speak(this.sectionSpeakTarget(),{speedId:'natural'});
-      if(a==='voice-preview')return this.speech.speak(el.dataset.text||'Hello!',{voiceId:el.dataset.voiceId||'teacher-clear',speedId:'learning'});
       if(a==='slow-preview')return this.speech.speak(el.dataset.text||'',{speedId:'slow'});
       if(a==='ipa-example')return this.speech.speak(el.dataset.text||'',{speedId:'slow'});
       if(a==='toggle-ipa'){const panel=document.getElementById(el.dataset.target||'');if(panel){panel.hidden=!panel.hidden;el.setAttribute('aria-expanded',String(!panel.hidden));}return;}
@@ -2641,22 +2624,6 @@ class AnasApp {
       if(a==='review')return this.startReview(Number(el.dataset.review));
       if(a==='coverage-test')return this.renderCoverageGame();
       if(a==='save-settings')return this.saveSettings();
-    });
-    document.addEventListener('change',e=>{
-      if(e.target.id==='quickVoice'){
-        localStorage.setItem('anasVoiceId',e.target.value);
-        const voiceSelect=this.$('#voiceId'); if(voiceSelect)voiceSelect.value=e.target.value;
-        this.updateVoiceStatus(Boolean((localStorage.getItem('anasTtsProxy')||'').trim()));
-        this.toast('Voice changed.');
-      }
-      if(e.target.id==='quickSpeed'){
-        localStorage.setItem('anasSpeed',e.target.value);
-        const speedSelect=this.$('#speedId'); if(speedSelect)speedSelect.value=e.target.value;
-        this.toast('Speed changed.');
-      }
-      if(e.target.id==='locale'){
-        this.populateVoiceControls(e.target.value);
-      }
     });
   }
   go(route){const h='#'+route;if(location.hash===h)this.route();else location.hash=route}
@@ -3101,20 +3068,18 @@ class AnasApp {
     const iconAudit=VisualIconLibrary.audit();
     const phonicsAudit=PhonicsQuestionEngine.audit(CURRICULUM);
     const voiceAudit={
-      locales:Object.keys(VOICE_CATALOG).length,
-      gb:VOICE_CATALOG["en-GB"].length,
-      us:VOICE_CATALOG["en-US"].length,
-      speeds:Object.keys(SPEED_MODES).length,
+      locale:LEARNING_AUDIO.english.locale,
+      voice:VOICE_CATALOG[LEARNING_AUDIO.english.locale][0].azure,
       slowWordRate:SPEED_MODES.slow.browserWordRate,
       slowSentenceRate:SPEED_MODES.slow.browserSentenceRate,
       ok:Boolean(
-        VOICE_CATALOG["en-GB"].find(v=>v.azure==="en-GB-SoniaNeural") &&
-        VOICE_CATALOG["en-GB"].find(v=>v.azure==="en-GB-MaisieNeural") &&
+        LEARNING_AUDIO.english.locale==='en-GB' &&
+        VOICE_CATALOG['en-GB'][0].azure==='en-GB-SoniaNeural' &&
         SPEED_MODES.slow.browserWordRate < SPEED_MODES.learning.browserWordRate &&
         SPEED_MODES.slow.browserSentenceRate < SPEED_MODES.learning.browserSentenceRate
       )
     };
-    this.$('#auditTable').innerHTML=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><span class="icon-audit-badge">${iconAudit.ok?'✓':'⚠'} Icon semantics · ${iconAudit.count}/${iconAudit.count}</span><span class="icon-audit-badge">${phonicsAudit.ok?'✓':'⚠'} Phonics Hunter · ${phonicsAudit.passed}/${phonicsAudit.total}</span><span class="icon-audit-badge">${voiceAudit.ok?'✓':'⚠'} Voice Engine · Slow ${voiceAudit.slowWordRate.toFixed(2)}× word / ${voiceAudit.slowSentenceRate.toFixed(2)}× sentence</span></div><div class="audit-scroll"><table class="audit-table"><thead><tr><th>Unit</th><th>Vocabulary</th><th>Language</th><th>Phonics</th><th>Life Skills</th><th>Status</th></tr></thead><tbody>${results.map(r=>`<tr><td>U${r.id} · ${r.title}</td><td>${r.actual.vocabulary}/${r.expected.vocabulary}</td><td>${r.actual.language}/${r.expected.language}</td><td>${r.actual.phonics}/${r.expected.phonics}</td><td>${r.actual.lifeSkills}/${r.expected.lifeSkills}</td><td class="${r.ok?'audit-ok':''}">${r.ok?'PASS':'FAIL'}</td></tr>`).join('')}</tbody></table></div><p class="tiny muted">The curriculum validator checks source coverage. The icon audit separately protects words that do not have an accurate native emoji, so a misleading symbol is not reused.</p>`;
+    this.$('#auditTable').innerHTML=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><span class="icon-audit-badge">${iconAudit.ok?'✓':'⚠'} Icon semantics · ${iconAudit.count}/${iconAudit.count}</span><span class="icon-audit-badge">${phonicsAudit.ok?'✓':'⚠'} Phonics Hunter · ${phonicsAudit.passed}/${phonicsAudit.total}</span><span class="icon-audit-badge">${voiceAudit.ok?'✓':'⚠'} Voice Engine · Fixed ${voiceAudit.locale} · Slow ${voiceAudit.slowWordRate.toFixed(2)}× word / ${voiceAudit.slowSentenceRate.toFixed(2)}× sentence</span></div><div class="audit-scroll"><table class="audit-table"><thead><tr><th>Unit</th><th>Vocabulary</th><th>Language</th><th>Phonics</th><th>Life Skills</th><th>Status</th></tr></thead><tbody>${results.map(r=>`<tr><td>U${r.id} · ${r.title}</td><td>${r.actual.vocabulary}/${r.expected.vocabulary}</td><td>${r.actual.language}/${r.expected.language}</td><td>${r.actual.phonics}/${r.expected.phonics}</td><td>${r.actual.lifeSkills}/${r.expected.lifeSkills}</td><td class="${r.ok?'audit-ok':''}">${r.ok?'PASS':'FAIL'}</td></tr>`).join('')}</tbody></table></div><p class="tiny muted">The curriculum validator checks source coverage. The icon audit separately protects words that do not have an accurate native emoji, so a misleading symbol is not reused.</p>`;
   }
 
   mathState(){
@@ -3727,11 +3692,16 @@ class AnasApp {
   pronounState(){
     if(!this.state.pronoun || typeof this.state.pronoun!=='object')this.state.pronoun={};
     const s=this.state.pronoun;
-    s.version=2;s.level=Math.max(1,Math.min(3,Number(s.level)||1));
+    s.version=3;s.level=Math.max(1,Math.min(3,Number(s.level)||1));
     s.correct=Number(s.correct)||0;s.attempted=Number(s.attempted)||0;s.streak=Number(s.streak)||0;
+    s.questionCycle=Math.max(1,Number(s.questionCycle)||1);
     if(!s.mastery || typeof s.mastery!=='object')s.mastery={};
     if(!s.pairMastery || typeof s.pairMastery!=='object')s.pairMastery={};
     if(!Array.isArray(s.history))s.history=[];
+    if(!Array.isArray(s.seenQuestionIds))s.seenQuestionIds=[];
+    s.seenQuestionIds=s.seenQuestionIds.filter(id=>PRONOUN_QUESTION_BANK.some(q=>q.id===id));
+    if(!Array.isArray(s.wrongQuestionIds))s.wrongQuestionIds=[];
+    s.wrongQuestionIds=s.wrongQuestionIds.filter(id=>PRONOUN_QUESTION_BANK.some(q=>q.id===id));
     return s;
   }
 
@@ -3751,17 +3721,52 @@ class AnasApp {
     this.$('#pronounLevelChip').textContent=`LEVEL ${level.id}`;
     this.$('#pronounLevelText').innerHTML=`<b>${level.icon} ${level.title}:</b> ${level.desc}`;
 
-    const examples=[];
-    PRONOUN_MODULE.pairs.forEach((p,pi)=>{
-      PRONOUN_MODULE.objects.slice(pi*3,pi*3+3).forEach(o=>examples.push({p,o}));
-    });
+    const examples=PRONOUN_MODULE.pairs.flatMap(p=>PRONOUN_MODULE.objects.map(o=>({p,o})));
     this.$('#pronounExamples').innerHTML=examples.map(({p,o})=>{
       const owned=`${p.possessive.charAt(0).toUpperCase()+p.possessive.slice(1)} ${o.label} is ${o.color}.`;
       return `<div class="example-card ${p.theme}"><div class="example-scene"><span class="person">${p.icon}</span><span class="object">${o.icon}</span></div><div class="who">${p.person} · ${p.subject} → ${p.possessive}</div><b>${p.subjectSentence}</b><div class="example-transform">↓</div><b class="owned">${owned}</b><div class="pronoun-actions"><button class="mini" data-speak="${this.attr(owned)}">🔊 Listen</button><button class="mini" data-action="slow-preview" data-text="${this.attr(owned)}">🐢 Slow</button><button class="mini speak" data-action="speak-item" data-text="${this.attr(owned)}" data-icon="${o.icon}">🎤 Say</button></div></div>`;
     }).join('');
+    const exampleCount=this.$('#pronounExampleCount');if(exampleCount)exampleCount.textContent=`${examples.length} EXAMPLES`;
 
     this.renderPronounGames();
+    this.renderPronounQuestionStats();
     this.updatePronounMastery();
+  }
+
+  renderPronounQuestionStats(){
+    const s=this.pronounState(),seen=new Set(s.seenQuestionIds),total=PRONOUN_QUESTION_BANK.length;
+    const counts=Object.fromEntries(PRONOUN_QUESTION_TYPES.map(type=>{
+      const pool=PRONOUN_QUESTION_BANK.filter(q=>q.type===type),done=pool.filter(q=>seen.has(q.id)).length;
+      return [type,{done,total:pool.length}];
+    }));
+    const labels={who:'WHO',whose:'WHOSE',pair:'PAIR',listen:'LISTEN',builder:'BUILD',dialogue:'TALK',repair:'FIX'};
+    const dash=this.$('#pronounBankDashboard');
+    if(dash)dash.innerHTML=`<div class="pronoun-bank-summary"><div class="pronoun-bank-stat"><b>${seen.size}/${total}</b><small>QUESTIONS SEEN</small></div><div class="pronoun-bank-stat"><b>${total-seen.size}</b><small>REMAINING</small></div><div class="pronoun-bank-stat"><b>${s.questionCycle}</b><small>BANK CYCLE</small></div><div class="pronoun-bank-stat"><b>${s.correct}/${s.attempted}</b><small>CORRECT / ATTEMPTS</small></div></div><div class="pronoun-type-progress">${PRONOUN_QUESTION_TYPES.map(type=>`<span class="${counts[type].done===counts[type].total?'done':''}">${labels[type]} ${counts[type].done}/${counts[type].total}</span>`).join('')}</div>`;
+  }
+
+  pronounQuestionPool(type){
+    const s=this.pronounState();
+    if(type==='mix')return PRONOUN_QUESTION_BANK.filter(q=>q.level<=s.level);
+    return PRONOUN_QUESTION_BANK.filter(q=>q.type===type && q.level<=s.level);
+  }
+
+  completePronounBankCycleIfNeeded(){
+    const s=this.pronounState();
+    if(s.seenQuestionIds.length<PRONOUN_QUESTION_BANK.length)return false;
+    s.questionCycle++;s.seenQuestionIds=[];this.persist();
+    return true;
+  }
+
+  renderPronounActivityComplete(type){
+    const s=this.pronounState(),seen=new Set(s.seenQuestionIds),pool=this.pronounQuestionPool(type),label=type==='mix'?'this level':(PRONOUN_MODULE.games.find(g=>g.id===type)?.title||type);
+    const nextGame=PRONOUN_MODULE.games.find(g=>g.id!=='speak'&&g.id!==type&&g.minLevel<=s.level&&this.pronounQuestionPool(g.id).some(q=>!seen.has(q.id)));
+    const action=nextGame
+      ? `<button class="btn dark" data-pronoun-game="${nextGame.id}">${nextGame.icon} Continue · ${nextGame.title}</button>`
+      : s.level<3
+        ? `<button class="btn dark" data-action="pronoun-level" data-level="${s.level+1}">⬆ Open Level ${s.level+1}</button>`
+        : `<button class="btn soft" data-route="pronouns">✓ Review progress</button>`;
+    this.$('#pronounStage').innerHTML=`<div class="pronoun-cycle-complete"><div class="done-icon">✅</div><h3>${label} complete for this bank cycle</h3><p>You completed all ${pool.length} available questions in this activity without repetition. Continue with another unfinished skill.</p><div class="row-actions" style="justify-content:center">${action}</div><div class="pronoun-note">Bank cycle ${s.questionCycle} · ${s.seenQuestionIds.length}/${PRONOUN_QUESTION_BANK.length} unique questions seen.</div></div>`;
+    this.renderPronounQuestionStats();this.focusPronounStage();
   }
 
   renderPronounGames(){
@@ -3795,39 +3800,19 @@ class AnasApp {
     return this.pick(bag.length?bag:PRONOUN_MODULE.pairs);
   }
 
-  makePronounQuestion(type){
-    const p=this.pronounWeightedPair(),o=this.pick(PRONOUN_MODULE.objects),poss=['my','his','her'],subs=['I','he','she'];
-    const ownCap=p.possessive.charAt(0).toUpperCase()+p.possessive.slice(1);
-    const owned=`${ownCap} ${o.label} is ${o.color}.`;
-    if(type==='who'){
-      const whoContext=p.id==='self'?`${p.person} is speaking: “___ am here.”`:`${p.person} is here.  ___ is here.`;
-      return {id:`who:${p.id}:${o.id}`,type,title:'WHO?',icon:p.icon,objectIcon:o.icon,pair:p.id,prompt:'Which word talks about this person?',context:whoContext,options:subs,correct:p.subject,readText:`Which word talks about this person? ${p.person} is here.`};
-    }
-    if(type==='whose')return {id:`whose:${p.id}:${o.id}`,type,title:'WHOSE?',icon:p.icon,objectIcon:o.icon,pair:p.id,prompt:'Which word shows who owns it?',context:`${p.person} owns this ${o.label}.  ___ ${o.label} is ${o.color}.`,options:poss,correct:p.possessive,readText:`Which word shows who owns it? ${p.person} owns this ${o.label}.`};
-    if(type==='pair')return {id:`pair:${p.id}:${o.id}`,type,title:'PAIR MATCH',icon:'🔗',objectIcon:o.icon,pair:p.id,prompt:`Which ownership word belongs with “${p.subject}”?`,context:`${p.subject} → ?`,options:poss,correct:p.possessive,readText:`Which ownership word belongs with ${p.subject}?`};
-    if(type==='listen')return {id:`listen:${p.id}:${o.id}`,type,title:'LISTEN & CATCH',icon:'🎧',objectIcon:o.icon,pair:p.id,prompt:'Listen. Which ownership word did you hear?',context:'Do not read the answer — use your ears.',options:poss,correct:p.possessive,listenText:owned,readText:'Listen. Which ownership word did you hear?'};
-    if(type==='builder')return {id:`builder:${p.id}:${o.id}`,type,title:'SENTENCE BUILDER',icon:p.icon,objectIcon:o.icon,pair:p.id,prompt:'Complete the sentence.',context:`${p.person} owns it.  ___ ${o.label} is ${o.color}.`,options:poss,correct:p.possessive,readText:`Complete the sentence. ${p.person} owns the ${o.label}.`};
-    if(type==='dialogue'){
-      const whose=Math.random()>.5;
-      return whose
-        ? {id:`dialogue-w:${p.id}:${o.id}`,type,title:'MINI TALK',icon:'💬',objectIcon:o.icon,pair:p.id,prompt:`“Whose ${o.label} is this?”`,context:`“It is ___ ${o.label}.”`,options:poss,correct:p.possessive,readText:`Whose ${o.label} is this? It is blank ${o.label}.`}
-        : {id:`dialogue-s:${p.id}:${o.id}`,type,title:'MINI TALK',icon:'💬',objectIcon:o.icon,pair:p.id,prompt:`“Who is ${p.person}?”`,context:`“___ ${p.be} ${p.person}.”`,options:subs,correct:p.subject,readText:`Who is ${p.person}?`};
-    }
-    if(type==='repair'){
-      const wrong=this.pick(poss.filter(x=>x!==p.possessive));
-      const wrongCap=wrong.charAt(0).toUpperCase()+wrong.slice(1);
-      return {id:`repair:${p.id}:${o.id}:${wrong}`,type,title:'FIX ONE WORD',icon:'🛠️',objectIcon:o.icon,pair:p.id,prompt:'One word is wrong. What should replace it?',context:`${p.subjectSentence} ${wrongCap} ${o.label} is ${o.color}.`,options:poss,correct:p.possessive,readText:`One word is wrong. ${p.subjectSentence} ${wrongCap} ${o.label} is ${o.color}.`};
-    }
-    if(type==='speak')return {id:`speak:${p.id}:${o.id}`,type,title:'SAY IT',icon:p.icon,objectIcon:o.icon,pair:p.id,prompt:'Listen, then say the whole sentence.',context:owned,speakText:owned,readText:'Listen, then say the whole sentence.'};
-    const modes=this.pronounState().level>=3?['who','whose','builder','dialogue','repair','listen']:['who','whose','builder','dialogue','listen'];
-    return this.makePronounQuestion(this.pick(modes));
-  }
-
   pronounQuestion(type){
-    const s=this.pronounState();let q=null;
-    for(let i=0;i<50;i++){q=this.makePronounQuestion(type);if(!s.history.includes(q.id))break}
-    if(!q)q=this.makePronounQuestion(type);
-    s.history=[...s.history.filter(id=>id!==q.id),q.id].slice(-28);return q;
+    const s=this.pronounState();
+    this.completePronounBankCycleIfNeeded();
+    const seen=new Set(s.seenQuestionIds),pool=this.pronounQuestionPool(type),unseen=pool.filter(q=>!seen.has(q.id));
+    if(!unseen.length)return null;
+    const weak=unseen.filter(q=>s.wrongQuestionIds.includes(q.id));
+    const q=this.pick(weak.length?weak:unseen);
+    s.seenQuestionIds.push(q.id);
+    s.history=[...s.history.filter(id=>id!==q.id),q.id].slice(-30);
+    this.currentPronounQuestion=q;
+    this.persist();
+    this.renderPronounQuestionStats();
+    return q;
   }
 
   startPronounGame(type){
@@ -3835,32 +3820,40 @@ class AnasApp {
     setTimeout(()=>{
       const s=this.pronounState();
       const game=PRONOUN_MODULE.games.find(g=>g.id===type);if(!game || game.minLevel>s.level)return;
-      const q=this.pronounQuestion(type);this.state.currentPronounGame=type;this.persist();
+      this.state.currentPronounGame=type;this.persist();
       this.$$('#pronounTabs button').forEach(b=>b.classList.toggle('active',b.dataset.pronounGame===type));
-      const scene=`<div class="pronoun-scene"><span>${q.icon}</span>${q.objectIcon?`<span class="scene-object">${q.objectIcon}</span>`:''}</div>`;
       if(type==='speak'){
-        this.$('#pronounStage').innerHTML=`<div class="pronoun-question">${scene}<span class="chip official">${q.title}</span><h3>${q.prompt}</h3><div class="pronoun-speak-target">${q.speakText}</div><div class="pronoun-speak-actions"><button class="btn soft" data-speak="${this.attr(q.speakText)}">🔊 Listen</button><button class="btn green" data-action="speak-item" data-text="${this.attr(q.speakText)}" data-icon="${q.objectIcon||q.icon}">🎤 Say it</button><button class="btn outline" data-pronoun-game="speak">↻ New sentence</button></div><div class="pronoun-feedback">Say the complete sentence, not only the pronoun.</div></div>`;
+        const p=this.pick(PRONOUN_MODULE.pairs),o=this.pick(PRONOUN_MODULE.objects),sentence=`${p.possessive.charAt(0).toUpperCase()+p.possessive.slice(1)} ${o.label} is ${o.color}.`;
+        const scene=`<div class="pronoun-scene"><span>${p.icon}</span><span class="scene-object">${o.icon}</span></div>`;
+        this.$('#pronounStage').innerHTML=`<div class="pronoun-question">${scene}<span class="chip official">SAY IT</span><h3>Listen, then say the whole sentence.</h3><div class="pronoun-speak-target">${sentence}</div><div class="pronoun-speak-actions"><button class="btn soft" data-speak="${this.attr(sentence)}">🔊 Listen</button><button class="btn green" data-action="speak-item" data-text="${this.attr(sentence)}" data-icon="${o.icon}">🎤 Say it</button><button class="btn outline" data-pronoun-game="speak">↻ New sentence</button></div><div class="pronoun-feedback">Say the complete sentence, not only the pronoun.</div></div>`;
         this.focusPronounStage();return;
       }
+      const q=this.pronounQuestion(type);
+      if(!q){this.renderPronounActivityComplete(type);return;}
+      const scene=`<div class="pronoun-scene"><span>${q.icon}</span>${q.objectIcon?`<span class="scene-object">${q.objectIcon}</span>`:''}</div>`;
       const opts=this.shuffle(q.options);
-      this.$('#pronounStage').innerHTML=`<div class="pronoun-question">${scene}<span class="chip official">${q.title}</span><h3>${q.prompt}</h3><div class="context">${q.context}</div><div class="pronoun-question-tools"><button class="pronoun-read-btn" data-action="pronoun-read-question" data-text="${this.attr(q.readText||q.prompt)}">🔊 Read question</button>${q.listenText?`<button class="pronoun-listen-btn" data-speak="${this.attr(q.listenText)}">🎧 Play sentence</button>`:''}</div><div class="attempt-status" data-role="pronoun-attempt">Try 1 of 3</div><div class="pronoun-options" data-attempts="0">${opts.map(o=>`<button class="pronoun-option" data-pronoun-answer="1" data-correct="${o===q.correct}" data-target="${this.attr(q.correct)}" data-pair="${q.pair}" data-type="${type}">${o}</button>`).join('')}</div><div class="pronoun-feedback" data-role="pronoun-feedback">Think about the person first, then the word family.</div><div class="pronoun-progress"><span class="mastery-dot on"></span><span class="mastery-dot"></span><span class="mastery-dot"></span><span class="pronoun-score">Streak ${s.streak||0}</span></div></div>`;
+      const seen=this.pronounState().seenQuestionIds.length;
+      this.$('#pronounStage').innerHTML=`<div class="pronoun-question">${scene}<span class="chip official">${q.title} · ${q.id}</span><h3>${q.prompt}</h3><div class="context">${q.context}</div><div class="pronoun-question-tools"><button class="pronoun-read-btn" data-action="pronoun-read-question" data-text="${this.attr(q.readText||q.prompt)}">🔊 Read question</button>${q.listenText?`<button class="pronoun-listen-btn" data-speak="${this.attr(q.listenText)}">🎧 Play sentence</button>`:''}</div><div class="attempt-status" data-role="pronoun-attempt">Try 1 of 3</div><div class="pronoun-options" data-attempts="0">${opts.map(o=>`<button class="pronoun-option" data-pronoun-answer="1" data-correct="${o===q.correct}" data-target="${this.attr(q.correct)}" data-pair="${q.pair}" data-type="${type}" data-question-id="${q.id}">${o}</button>`).join('')}</div><div class="pronoun-feedback" data-role="pronoun-feedback">Think about the person first, then the word family.</div><div class="pronoun-progress"><span class="mastery-dot on"></span><span class="mastery-dot"></span><span class="mastery-dot"></span><span class="pronoun-score">${seen}/${PRONOUN_QUESTION_BANK.length} · Cycle ${s.questionCycle}</span></div></div>`;
       this.focusPronounStage();
     },0);
   }
 
   handlePronounAnswer(btn){
     const wrap=btn.closest('.pronoun-options');if(!wrap || btn.disabled)return;
-    const s=this.pronounState(),ok=btn.dataset.correct==='true',target=btn.dataset.target||'',pair=btn.dataset.pair||'',type=btn.dataset.type||'who';
+    const s=this.pronounState(),ok=btn.dataset.correct==='true',target=btn.dataset.target||'',pair=btn.dataset.pair||'',type=btn.dataset.type||'who',qid=btn.dataset.questionId||'';
+    const q=this.currentPronounQuestion?.id===qid?this.currentPronounQuestion:PRONOUN_QUESTION_BANK.find(x=>x.id===qid);
     const attempts=Number(wrap.dataset.attempts||0)+1;wrap.dataset.attempts=String(attempts);s.attempted++;
     const parent=wrap.parentElement,status=parent.querySelector('[data-role="pronoun-attempt"]'),feedback=parent.querySelector('[data-role="pronoun-feedback"]'),dots=[...parent.querySelectorAll('.mastery-dot')];
     dots.forEach((d,i)=>d.classList.toggle('on',i<Math.min(3,attempts)));
     if(ok){
       wrap.querySelectorAll('button').forEach(b=>b.disabled=true);s.correct++;s.streak=(s.streak||0)+1;s.mastery[target]=Math.min(3,(s.mastery[target]||0)+(attempts===1?2:1));if(pair)s.pairMastery[pair]=Math.min(6,(s.pairMastery[pair]||0)+(attempts===1?2:1));
-      this.reward(attempts===1?7:attempts===2?5:3,1);if(status)status.textContent=attempts===1?'Excellent! ⭐':'Good thinking! ⭐';if(feedback)feedback.textContent=`Correct · ${target} belongs to this pronoun family.`;this.confetti();this.persist();this.updatePronounMastery();setTimeout(()=>this.startPronounGame(type),900);return;
+      s.wrongQuestionIds=s.wrongQuestionIds.filter(id=>id!==qid);
+      this.reward(attempts===1?7:attempts===2?5:3,1);if(status)status.textContent=attempts===1?'Excellent! ⭐':'Good thinking! ⭐';if(feedback)feedback.textContent=`Correct · ${q?.explanation||`${target} belongs to this pronoun family.`}`;this.confetti();this.persist();this.updatePronounMastery();this.renderPronounQuestionStats();setTimeout(()=>this.startPronounGame(type),900);return;
     }
-    btn.disabled=true;btn.classList.add('used');s.streak=0;if(feedback)feedback.textContent='Look at the person again. Keep the matching pronoun family together.';
-    if(attempts<3){if(status){status.textContent=attempts===1?'Try 2 of 3':'Last try · 3 of 3';status.classList.toggle('last',attempts===2)}this.persist();return;}
-    wrap.querySelectorAll('button').forEach(b=>b.disabled=true);if(status){status.textContent='Good effort · next one';status.classList.remove('last')}if(feedback)feedback.textContent='We will recycle this pronoun family again soon.';this.persist();setTimeout(()=>this.startPronounGame(type),1100);
+    if(qid&&!s.wrongQuestionIds.includes(qid))s.wrongQuestionIds.push(qid);
+    btn.disabled=true;btn.classList.add('used');s.streak=0;if(feedback)feedback.textContent=q?.explanation||'Look at the person again. Keep the matching pronoun family together.';
+    if(attempts<3){if(status){status.textContent=attempts===1?'Try 2 of 3':'Last try · 3 of 3';status.classList.toggle('last',attempts===2)}this.persist();this.renderPronounQuestionStats();return;}
+    wrap.querySelectorAll('button').forEach(b=>b.disabled=true);if(status){status.textContent='Good effort · next one';status.classList.remove('last')}if(feedback)feedback.textContent=`Answer: ${target}. ${q?.explanation||'We will practise this family again.'}`;this.persist();this.renderPronounQuestionStats();setTimeout(()=>this.startPronounGame(type),1100);
   }
 
   renderProgress(){
@@ -3876,81 +3869,24 @@ class AnasApp {
   sectionSpeakTarget(){
     const u=this.unit();if(this.currentSection==='vocabulary')return u.vocabulary[0][0];if(this.currentSection==='language')return u.language[0];if(this.currentSection==='phonics')return u.phonics[0].words[0][0];if(this.currentSection==='life')return u.lifeSkills[0];if(this.currentSection==='ipa')return 'British IPA pronunciation practice';return u.vocabulary[0][0];
   }
-  openSpeak(text,icon='🎤'){this.speakTarget=text;this.speakIcon=icon;this.$('#speakTarget').textContent=text;this.$('#speakIcon').innerHTML=this.visual(text,icon);this.resetScores();this.renderVoiceDemos(localStorage.getItem('anasLocale')||'en-GB');this.go('speak')}
+  openSpeak(text,icon='🎤'){this.speakTarget=text;this.speakIcon=icon;this.$('#speakTarget').textContent=text;this.$('#speakIcon').innerHTML=this.visual(text,icon);const ipa=this.$('#speakIpa');if(ipa)ipa.textContent=this.ipaFor(text);this.resetScores();this.go('speak')}
   resetScores(){this.$('#scoreRing').style.setProperty('--score',0);this.$('#scoreNum').textContent='—';['accScore','fluScore','compScore'].forEach(id=>this.$('#'+id).textContent='—');this.$('#heardText').textContent='';this.$('#coachStatus').textContent="Tap the microphone when you're ready."}
   showScores(o,a,f,c,feedback){o=Math.max(0,Math.min(100,Math.round(o||0)));this.$('#scoreRing').style.setProperty('--score',o);this.$('#scoreNum').textContent=o;this.$('#accScore').textContent=isNaN(a)?'—':Math.round(a);this.$('#fluScore').textContent=isNaN(f)?'—':Math.round(f);this.$('#compScore').textContent=isNaN(c)?'—':Math.round(c);this.$('#coachFeedback').textContent=feedback;this.$('#coachStatus').textContent=o>=85?'Excellent, Anas! 🌟':o>=65?'Good try! 👍':'Listen and try again 💪'}
   reward(xp,stars){this.state.xp+=xp;this.state.stars+=stars;this.persist()}
   touchMastery(key,amount=1){if(!key)return;this.state.mastery[key]=Math.min(3,(this.state.mastery[key]||0)+amount);this.persist()}
-  populateVoiceControls(locale=(localStorage.getItem('anasLocale')||'en-GB')){
-    const catalog=VOICE_CATALOG[locale]||VOICE_CATALOG["en-GB"];
-    const saved=localStorage.getItem('anasVoiceId')||'teacher-clear';
-    const optionHtml=catalog.map(v=>`<option value="${v.id}">${v.icon} ${v.label} · ${v.short}</option>`).join('');
-    const quick=this.$('#quickVoice'),parent=this.$('#voiceId');
-    if(quick){quick.innerHTML=optionHtml;quick.value=catalog.some(v=>v.id===saved)?saved:catalog[0].id}
-    if(parent){parent.innerHTML=optionHtml;parent.value=catalog.some(v=>v.id===saved)?saved:catalog[0].id}
-    const speed=localStorage.getItem('anasSpeed')||'learning';
-    const quickSpeed=this.$('#quickSpeed'),parentSpeed=this.$('#speedId');
-    if(quickSpeed)quickSpeed.value=speed;if(parentSpeed)parentSpeed.value=speed;
-    this.renderVoiceDemos(locale);
-  }
-
-  renderVoiceDemos(locale=(localStorage.getItem('anasLocale')||'en-GB')){
-    const catalog=VOICE_CATALOG[locale]||VOICE_CATALOG["en-GB"];
-    const demoText=this.speakTarget||'Hello!';
-    const top=catalog.filter(v=>['teacher-clear','kid-buddy','teacher-male'].includes(v.id));
-    const html=top.map(v=>`<button class="voice-choice" data-action="voice-preview" data-voice-id="${v.id}" data-text="${this.attr(demoText)}">${v.icon} ${v.short}<small>${v.role}</small></button>`).join('');
-    const parentGrid=this.$('#voiceDemoGrid'),speakGrid=this.$('#speakCompareGrid');
-    if(parentGrid)parentGrid.innerHTML=html;
-    if(speakGrid)speakGrid.innerHTML=html;
-  }
-
-  setPlaybackReadout(request,state){
-    const el=this.$('#playbackReadout');
-    if(!el)return;
-    const backend=state==='playing-azure'?'Azure':state==='playing-browser'?'Browser':'';
-    const rate=request?.speed?.browserRate;
-    const isSlow=request?.speedId==='slow';
-    const status=state==='starting'?'Starting…':state==='done'?'Ready':`${backend} · ${request.voice.short} · ${request.speed.label}`;
-    el.textContent=state==='done'?'Ready':`${status}${backend==='Browser'&&Number.isFinite(rate)?` · ${rate.toFixed(2)}×`:''}`;
-    el.classList.toggle('active',state!=='done');
-    el.classList.toggle('slow-active',isSlow&&state!=='done');
-  }
-
-  updateVoiceStatus(azureAvailable){
-    const el=this.$('#voiceStatus');if(!el)return;
-    el.textContent=azureAvailable?'Azure Neural TTS':'Browser fallback';
-    el.classList.toggle('fallback',!azureAvailable);
-  }
-
   saveSettings(){
-    const locale=this.$('#locale').value;
-    const voiceId=this.$('#voiceId').value;
-    const speed=this.$('#speedId').value;
     localStorage.setItem('anasProxy',this.$('#proxyUrl').value.trim());
     localStorage.setItem('anasTtsProxy',this.$('#ttsProxyUrl').value.trim());
-    localStorage.setItem('anasLocale',locale);
-    localStorage.setItem('anasVoiceId',voiceId);
-    localStorage.setItem('anasSpeed',speed);
     this.applySettings();
-    this.toast('Voice Learning Engine settings saved.');
+    this.toast('Speech backend settings saved.');
   }
 
   applySettings(){
     const p=localStorage.getItem('anasProxy')||'';
     const tts=localStorage.getItem('anasTtsProxy')||'';
-    const locale=localStorage.getItem('anasLocale')||'en-GB';
-    const voiceId=localStorage.getItem('anasVoiceId')||'teacher-clear';
-    const speed=localStorage.getItem('anasSpeed')||'learning';
     this.$('#proxyUrl').value=p;
     this.$('#ttsProxyUrl').value=tts;
-    this.$('#locale').value=locale;
-    this.$('#coachMode').textContent=p?'AZURE PRONUNCIATION':'BROWSER COACH';
-    this.populateVoiceControls(locale);
-    const voice=this.$('#voiceId');if(voice)voice.value=voiceId;
-    const quick=this.$('#quickVoice');if(quick)quick.value=voiceId;
-    const speedSelect=this.$('#speedId');if(speedSelect)speedSelect.value=speed;
-    const quickSpeed=this.$('#quickSpeed');if(quickSpeed)quickSpeed.value=speed;
-    this.updateVoiceStatus(Boolean(tts));
+    ['anasLocale','anasVoiceId','anasSpeed'].forEach(key=>localStorage.removeItem(key));
   }
   pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
   shuffle(arr){arr=[...arr];for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
