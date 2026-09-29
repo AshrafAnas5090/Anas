@@ -753,7 +753,7 @@ svg,img{max-width:100%}
 
 
 
-/* ---------- V15.3 · Soft & Clear IPA identity ---------- */
+/* ---------- V15.4 · Ryan British Voice identity ---------- */
 :root{
   --ipa-font:"Calibri","Segoe UI","Arial Unicode MS",Arial,sans-serif;
   --ipa-ink:#52668d;
@@ -2733,13 +2733,14 @@ const WORD_READING_ART = Object.freeze({
  "تَمْرٌ":'<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="65" rx="49" ry="17" fill="#f1e3c5"/><g fill="#885332" stroke="#5b351e" stroke-width="2"><ellipse cx="38" cy="50" rx="14" ry="23" transform="rotate(-25 38 50)"/><ellipse cx="66" cy="45" rx="14" ry="23" transform="rotate(15 66 45)"/><ellipse cx="86" cy="57" rx="13" ry="21" transform="rotate(50 86 57)"/></g><path d="m31 34 15 31m18-40 5 37m2-13 27 13" stroke="#ba8754" stroke-width="2"/></svg>'
 });
 const LEARNING_AUDIO = Object.freeze({
-  english:Object.freeze({locale:"en-GB",voiceId:"teacher-clear",speedId:"learning"}),
+  english:Object.freeze({locale:"en-GB",voiceId:"teacher-male",speedId:"learning"}),
   arabic:Object.freeze({locale:"ar-EG",voiceId:"arabic-reading",speedId:"learning"})
 });
 
 const VOICE_CATALOG = Object.freeze({
   "en-GB":Object.freeze([
-    Object.freeze({id:"teacher-clear",label:"Teacher · British",short:"Sonia",azure:"en-GB-SoniaNeural",gender:"Female",role:"Primary reference",icon:"👩‍🏫"})
+    Object.freeze({id:"teacher-male",label:"Ryan · British Male",short:"Ryan",azure:"en-GB-RyanNeural",gender:"Male",role:"Primary learning voice",icon:"👨‍🏫"}),
+    Object.freeze({id:"teacher-clear",label:"Sonia · British Female",short:"Sonia",azure:"en-GB-SoniaNeural",gender:"Female",role:"Alternate learning voice",icon:"👩‍🏫"})
   ]),
   "ar-EG":Object.freeze([
     Object.freeze({id:"arabic-reading",label:"Salma · Arabic",short:"Salma",azure:"ar-EG-SalmaNeural",gender:"Female",role:"Arabic reference",icon:"👩‍🏫"})
@@ -2929,7 +2930,8 @@ class SpeechService {
 
   selectBrowserVoice(voices, request) {
     const namesById = {
-      "teacher-clear":["Sonia","Google UK English Female","Microsoft Sonia"],
+      "teacher-male":["Microsoft Ryan","Ryan","Microsoft George","George","Daniel","Arthur","Oliver","UK English Male"],
+      "teacher-clear":["Microsoft Sonia","Sonia","Google UK English Female","Hazel","Susan","Serena","Martha","Libby","Maisie","UK English Female"],
       "arabic-reading":["Salma","Microsoft Salma","Hoda","Microsoft Hoda","Arabic","العربية"]
     };
     const preferredNames = namesById[request.voice.id] || [];
@@ -3792,7 +3794,7 @@ class AnasApp {
       slowSentenceRate:SPEED_MODES.slow.browserSentenceRate,
       ok:Boolean(
         LEARNING_AUDIO.english.locale==='en-GB' &&
-        VOICE_CATALOG['en-GB'][0].azure==='en-GB-SoniaNeural' &&
+        VOICE_CATALOG['en-GB'][0].azure==='en-GB-RyanNeural' &&
         SPEED_MODES.slow.browserWordRate < SPEED_MODES.learning.browserWordRate &&
         SPEED_MODES.slow.browserSentenceRate < SPEED_MODES.learning.browserSentenceRate
       )
@@ -4845,8 +4847,8 @@ const PA_VOICES = {
  female:{id:'teacher-clear',label:'امرأة · British',azure:'en-GB-SoniaNeural',gender:'Female',short:'Sonia'},
  male:{id:'teacher-male',label:'رجل · British',azure:'en-GB-RyanNeural',gender:'Male',short:'Ryan'}
 };
-const PA_VOICE_KEY='anas_british_voice_v13';
-function paVoiceSettings(){try{const v=JSON.parse(localStorage.getItem(PA_VOICE_KEY)||'{}');return {gender:v.gender==='male'?'male':'female',speed:v.speed==='slow'?'slow':'learning'};}catch{return {gender:'female',speed:'learning'};}}
+const PA_VOICE_KEY='anas_british_voice_v15_4';
+function paVoiceSettings(){try{const v=JSON.parse(localStorage.getItem(PA_VOICE_KEY)||'{}');return {gender:v.gender==='female'?'female':'male',speed:v.speed==='slow'?'slow':'learning'};}catch{return {gender:'male',speed:'learning'};}}
 const paOriginalRequest=SpeechService.prototype.createRequest;
 SpeechService.prototype.createRequest=function(text,options={}){
  const r=paOriginalRequest.call(this,text,options);if(!r.locale.startsWith('en'))return r;
@@ -4856,16 +4858,37 @@ SpeechService.prototype.createRequest=function(text,options={}){
 const paOriginalVoice=SpeechService.prototype.selectBrowserVoice;
 SpeechService.prototype.selectBrowserVoice=function(voices,request){
  if(!request.locale.startsWith('en'))return paOriginalVoice.call(this,voices,request);
- const male=request.voice.gender==='Male';
- const names=male?/\b(ryan|george|daniel|arthur|oliver)\b|uk english male/i:/\b(sonia|hazel|susan|serena|martha|libby|maisie)\b|uk english female/i;
- return voices.find(v=>String(v.lang).toLowerCase().replace('_','-')==='en-gb'&&names.test(v.name))||null;
+ const wantsMale=request.voice.gender==='Male';
+ const preferred=wantsMale
+  ?[/microsoft ryan/i,/\bryan\b/i,/microsoft george/i,/\bgeorge\b/i,/\bdaniel\b/i,/\barthur\b/i,/\boliver\b/i,/uk english male/i]
+  :[/microsoft sonia/i,/\bsonia\b/i,/google uk english female/i,/\bhazel\b/i,/\bsusan\b/i,/\bserena\b/i,/\bmartha\b/i,/\blibby\b/i,/\bmaisie\b/i,/uk english female/i];
+ const score=v=>{
+  const lang=String(v.lang||'').toLowerCase().replace('_','-'),name=String(v.name||'');
+  let n=0;
+  if(lang==='en-gb')n+=1000;
+  else if(lang.startsWith('en'))n+=250;
+  else return -1;
+  preferred.forEach((re,i)=>{if(re.test(name))n+=500-i*18;});
+  if(/natural|neural|online|enhanced|premium/i.test(name))n+=80;
+  if(wantsMale&&/male/i.test(name))n+=45;
+  if(!wantsMale&&/female/i.test(name))n+=45;
+  return n;
+ };
+ return [...voices].map(v=>({v,n:score(v)})).filter(x=>x.n>=0).sort((a,b)=>b.n-a.n)[0]?.v||null;
 };
 const paOriginalPlay=SpeechService.prototype.playBrowser;
 SpeechService.prototype.playBrowser=async function(r,token){
  if(r.locale.startsWith('en')){
   const voices=await this.ensureBrowserVoices();if(token!==this.playbackToken)return false;
-  if(!this.selectBrowserVoice(voices,r)){this.app.toast('الصوت البريطاني المختار غير متاح. جرّب الصوت الآخر أو فعّل خدمة الصوت من الإعدادات.');return false;}
+  const selected=this.selectBrowserVoice(voices,r);
   if(r.mode==='phoneme'){this.app.toast('الصوت المفرد يحتاج تسجيلًا مخصصًا. استمع إلى كلمة المثال.');return false;}
+  // Never hard-fail on mobile only because Ryan is not installed.
+  // The original browser player will use our ranked en-GB/en voice when available,
+  // or the platform English fallback when the browser exposes no named voice yet.
+  if(!selected && voices.length===0){
+    // Some mobile browsers populate voices only after the first user-initiated speak.
+    // Continue and let SpeechSynthesisUtterance.lang = en-GB request the best system voice.
+  }
  }
  return paOriginalPlay.call(this,r,token);
 };
@@ -4879,7 +4902,7 @@ class PlusAdventure {
  }
  esc(s){return PA_ESCAPE(s);}
  save(){try{localStorage.setItem('anas_plus_adventure_v13',JSON.stringify(this.records));this.saveError=false;}catch{this.saveError=true;}}
- voiceHTML(){const v=paVoiceSettings();return `<div class="pa-voice" dir="rtl"><b>🎧 النطق البريطاني</b><label>الصوت <select data-pa-voice="gender"><option value="female" ${v.gender==='female'?'selected':''}>👩 صوت امرأة</option><option value="male" ${v.gender==='male'?'selected':''}>👨 صوت رجل</option></select></label><label>السرعة <select data-pa-voice="speed"><option value="learning" ${v.speed==='learning'?'selected':''}>عادية للتعلّم</option><option value="slow" ${v.speed==='slow'?'selected':''}>بطيئة</option></select></label><button data-pa="preview">🔊 جرّب الصوت</button><button data-pa="stop">إيقاف</button><span id="pa-voice-status" role="status">يحفظ اختيارك تلقائيًا · لا تبديل إلى لهجة أخرى</span></div>`;}
+ voiceHTML(){const v=paVoiceSettings();return `<div class="pa-voice" dir="rtl"><b>🎧 النطق البريطاني</b><label>الصوت <select data-pa-voice="gender"><option value="male" ${v.gender==='male'?'selected':''}>👨 Ryan · رجل بريطاني واضح</option><option value="female" ${v.gender==='female'?'selected':''}>👩 Sonia · امرأة بريطانية</option></select></label><label>السرعة <select data-pa-voice="speed"><option value="learning" ${v.speed==='learning'?'selected':''}>عادية للتعلّم</option><option value="slow" ${v.speed==='slow'?'selected':''}>بطيئة</option></select></label><button data-pa="preview">🔊 جرّب الصوت</button><button data-pa="stop">إيقاف</button><span id="pa-voice-status" role="status">الافتراضي Ryan British Male · Azure عند توفره · بديل تلقائي على الهاتف</span></div>`;}
  changeVoice(el){const v=paVoiceSettings();v[el.dataset.paVoice]=el.value;this.app.speech.stopBackendsOnly();try{localStorage.setItem(PA_VOICE_KEY,JSON.stringify(v));this.voiceStatus('تم حفظ اختيارك. اضغط «جرّب الصوت».');}catch{this.voiceStatus('تعذر حفظ اختيار الصوت في هذا المتصفح.');}}
  voiceStatus(s){this.voiceMessage=s;document.querySelectorAll('#pa-voice-status').forEach(el=>el.textContent=s);}
  async say(text,preview=false){
