@@ -753,7 +753,7 @@ svg,img{max-width:100%}
 
 
 
-/* ---------- V15.4 · Ryan British Voice identity ---------- */
+/* ---------- V15.5 · Ryan British Voice identity ---------- */
 :root{
   --ipa-font:"Calibri","Segoe UI","Arial Unicode MS",Arial,sans-serif;
   --ipa-ink:#52668d;
@@ -950,6 +950,49 @@ svg,img{max-width:100%}
 @media(max-width:850px){.v15-unit-map{grid-template-columns:repeat(3,1fr)}.v15-scope-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:540px){.v14 #v15PlusCurriculum{padding:17px}.v15-plus-heading{align-items:flex-start;flex-direction:column}.v15-scope-grid{grid-template-columns:1fr}.v15-scope{min-height:130px}.v15-unit-map{grid-template-columns:repeat(3,1fr)}}
 </style>
+
+<style id="speechEngineV2Styles">
+/* ---------- Speech Engine V2 · mobile-first ---------- */
+#speakPage{--sv2-ink:#173153;--sv2-blue:#426fe8;--sv2-mint:#1f9d78;--sv2-gold:#d89614;--sv2-red:#cc5260;--sv2-line:#dfe7f3}
+#speakPage .speak-layout{grid-template-columns:minmax(0,1.08fr) minmax(300px,.72fr);gap:14px;align-items:start}
+#speakPage .coach,#speakPage .score-panel{border-radius:26px}
+#speakPage .coach{padding:22px}
+#speakPage .target{font-size:clamp(38px,6vw,60px);line-height:1.05;color:var(--sv2-ink);overflow-wrap:anywhere}
+#speakPage .speak-ipa{font-size:clamp(18px,2.6vw,24px);font-weight:600;color:#536784;letter-spacing:.025em;margin:8px auto 14px}
+.sv2-voice-state{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:8px auto 14px;min-height:30px}
+.sv2-voice-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#edf8f4;color:#166b52;border:1px solid #ccecdf;font-size:11px;font-weight:900}
+.sv2-voice-badge.warn{background:#fff7e5;color:#815b08;border-color:#f4dfad}.sv2-voice-badge.bad{background:#fff0f2;color:#9a3845;border-color:#f2c7cd}
+.sv2-action-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:min(520px,100%);margin:0 auto}
+.sv2-action-row .btn{min-height:50px;font-size:15px}
+.sv2-mic-wrap{display:grid;justify-items:center;gap:8px;margin:18px auto 5px}
+#speakPage .mic-ring{margin:0;width:124px;height:124px;background:linear-gradient(145deg,#eef2ff,#f5fbff);border:1px solid #dfe5f5}
+#speakPage .mic-button{width:90px;height:90px;font-size:34px;touch-action:manipulation}
+.sv2-mic-label{font-size:13px;font-weight:900;color:#52617c;text-align:center}
+.sv2-meter{width:min(330px,82vw);height:8px;border-radius:999px;background:#edf0f6;overflow:hidden}
+.sv2-meter>i{display:block;width:4%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#45a8e8,#35b889);transition:width .09s linear}
+#coachStatus{font-size:14px;color:#334765;line-height:1.45}
+#heardText{margin-top:6px;font-size:12px!important;line-height:1.5}
+.sv2-word-feedback{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin:12px 0 2px}
+.sv2-word{min-width:72px;padding:9px 10px;border-radius:13px;border:1px solid #dfe6f1;background:#f8faff;text-align:center}
+.sv2-word b{display:block;font-size:15px;color:#233858}.sv2-word small{display:block;margin-top:3px;font-weight:900;color:#78869b}
+.sv2-word.good{background:#eaf9f3;border-color:#bae8d8}.sv2-word.good small{color:#157153}.sv2-word.mid{background:#fff8e7;border-color:#f0dca8}.sv2-word.mid small{color:#8b6508}.sv2-word.retry{background:#fff0f2;border-color:#efc3c9}.sv2-word.retry small{color:#9d3d49}
+.sv2-mode-note{padding:10px 12px;border-radius:13px;background:#f4f7fc;color:#56657e;font-size:11px;line-height:1.5;margin:0 0 12px}
+#speakPage .score-row{padding:8px 0;border-bottom:1px solid #eef1f6;margin:0}
+#speakPage .score-row:last-of-type{border-bottom:0}
+#speakPage .score-panel.browser-check .score-row{opacity:.38}
+#speakPage .score-panel.browser-check .score-ring{background:conic-gradient(#7b8ca8 calc(var(--score)*1%),#edf0f6 0)}
+.sv2-retry-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+@media(max-width:820px){
+ #speakPage .speak-layout{grid-template-columns:1fr;gap:10px;margin-top:8px}
+ #speakPage .coach{padding:15px 12px}#speakPage .score-panel{padding:15px 13px}
+ #speakPage .target-icon{font-size:54px}#speakPage .target{font-size:clamp(36px,11vw,52px)}
+ .sv2-action-row{grid-template-columns:1fr 1fr}.sv2-action-row .btn{padding:11px 8px}
+ #speakPage .mic-ring{width:116px;height:116px}#speakPage .mic-button{width:84px;height:84px}
+ #speakPage .score-ring{width:132px;height:132px}#speakPage .score-ring>div{width:106px;height:106px}#speakPage .score-ring strong{font-size:34px}
+}
+@media(max-width:390px){.sv2-action-row{grid-template-columns:1fr}.sv2-word{min-width:64px;padding:8px}.sv2-voice-badge{font-size:10px}}
+</style>
+
 </head>
 <body class="guided-view">
 <div id="storageNote" role="status" hidden>تعذر حفظ التقدم في المتصفح. صدّر نسخة احتياطية من صفحة ولي الأمر قبل الإغلاق.</div>
@@ -1094,22 +1137,31 @@ svg,img{max-width:100%}
 <section id="speakPage" class="page">
   <div class="speak-layout">
     <div class="card coach">
-      <span class="chip">SPEAKING PRACTICE</span>
+      <span class="chip">SPEECH ENGINE V2 · MOBILE READY</span>
+      <div class="sv2-voice-state"><span class="sv2-voice-badge" id="voiceSourceStatus">🎧 Checking teacher voice…</span></div>
       <div class="target-icon" id="speakIcon">🎤</div>
       <div class="target" id="speakTarget">Hello!</div>
-      <div class="hint">Listen first. Then say the complete target.</div>
       <div class="speak-ipa" id="speakIpa"></div>
-      <div class="row-actions" style="justify-content:center"><button class="btn soft" data-action="speak-target">🔊 Listen</button><button class="btn orange" data-action="speak-target-slow">🐢 Slow</button><button class="btn outline" data-action="back-to-learn">← Back to lesson</button></div>
-      <div class="mic-ring"><button class="mic-button" id="micButton" data-action="mic">🎤</button></div>
-      <div id="coachStatus" style="font-weight:1000;min-height:24px">Tap the microphone when you're ready.</div><div id="heardText" class="tiny muted"></div>
+      <div class="hint">1 · Listen &nbsp; → &nbsp; 2 · Speak &nbsp; → &nbsp; 3 · Get feedback</div>
+      <div class="sv2-action-row"><button class="btn soft" data-action="speak-target">🔊 Listen</button><button class="btn orange" data-action="speak-target-slow">🐢 Slow</button></div>
+      <div class="sv2-mic-wrap">
+        <div class="mic-ring"><button class="mic-button" id="micButton" data-action="mic" aria-label="Start speaking">🎤</button></div>
+        <div class="sv2-mic-label" id="micLabel">Tap once and speak. Recording stops automatically after silence.</div>
+        <div class="sv2-meter" aria-hidden="true"><i id="speechMeter"></i></div>
+      </div>
+      <div id="coachStatus" style="font-weight:1000;min-height:24px">Tap the microphone when you're ready.</div>
+      <div id="heardText" class="tiny muted"></div>
+      <div id="wordFeedback" class="sv2-word-feedback" aria-live="polite"></div>
+      <div class="sv2-retry-row"><button class="btn outline" data-action="back-to-learn">← Back to lesson</button></div>
     </div>
     <div class="card score-panel">
-      <div class="section-head"><div><h3>🎤 Speaking feedback</h3><p>Browser mode checks recognized words only. Server assessment is shown separately.</p></div></div>
-      <p id="speechModeNote" role="status"></p><div class="score-ring" id="scoreRing"><div><strong id="scoreNum">—</strong></div></div>
+      <div class="section-head"><div><h3>🎤 Speaking feedback</h3><p>Azure measures pronunciation. Browser fallback only checks recognized wording.</p></div></div>
+      <p id="speechModeNote" class="sv2-mode-note" role="status">Checking available speech engine…</p>
+      <div class="score-ring" id="scoreRing"><div><strong id="scoreNum">—</strong></div></div>
       <div class="score-row"><span>Accuracy</span><b id="accScore">—</b></div>
       <div class="score-row"><span>Fluency</span><b id="fluScore">—</b></div>
       <div class="score-row"><span>Completeness</span><b id="compScore">—</b></div>
-      <div id="coachFeedback" style="padding:12px;border-radius:13px;background:#f6f7fc;color:var(--muted);font-size:12px;line-height:1.5">Say the target and the coach will respond.</div>
+      <div id="coachFeedback" style="padding:12px;border-radius:13px;background:#f6f7fc;color:var(--muted);font-size:12px;line-height:1.5">Listen to Ryan, then say the target.</div>
     </div>
   </div>
 </section>
@@ -4847,7 +4899,7 @@ const PA_VOICES = {
  female:{id:'teacher-clear',label:'امرأة · British',azure:'en-GB-SoniaNeural',gender:'Female',short:'Sonia'},
  male:{id:'teacher-male',label:'رجل · British',azure:'en-GB-RyanNeural',gender:'Male',short:'Ryan'}
 };
-const PA_VOICE_KEY='anas_british_voice_v15_4';
+const PA_VOICE_KEY='anas_british_voice_v15_5';
 function paVoiceSettings(){try{const v=JSON.parse(localStorage.getItem(PA_VOICE_KEY)||'{}');return {gender:v.gender==='female'?'female':'male',speed:v.speed==='slow'?'slow':'learning'};}catch{return {gender:'male',speed:'learning'};}}
 const paOriginalRequest=SpeechService.prototype.createRequest;
 SpeechService.prototype.createRequest=function(text,options={}){
@@ -5062,6 +5114,189 @@ class Anas07Organizer{
 
 const v14OldPlusRender=AnasApp.prototype.renderEnglishPlus;
 AnasApp.prototype.renderEnglishPlus=function(){v14OldPlusRender.call(this);setTimeout(()=>window.anas07?.organizePlus(),0);};
+
+
+
+/* ================= Speech Engine V2 · V15.5 ================= */
+(function installSpeechEngineV2(){
+ const malePatterns=[/\bryan\b/i,/\bgeorge\b/i,/\bdaniel\b/i,/\barthur\b/i,/\boliver\b/i,/\bjamie\b/i,/\bedward\b/i,/\balex\b/i,/uk english male/i,/english.*male/i];
+ const femalePatterns=[/\bsonia\b/i,/\bhazel\b/i,/\bsusan\b/i,/\bserena\b/i,/\bmartha\b/i,/\blibby\b/i,/\bmaisie\b/i,/female/i];
+ const normLang=v=>String(v?.lang||'').toLowerCase().replace('_','-');
+ const isEnglish=v=>normLang(v).startsWith('en');
+ const isGB=v=>normLang(v)==='en-gb';
+ const knownMale=v=>malePatterns.some(re=>re.test(String(v?.name||'')))&&!femalePatterns.some(re=>re.test(String(v?.name||'')));
+ const q=id=>document.getElementById(id);
+
+ SpeechService.prototype.setVoiceBadge=function(text,kind='ok'){
+   const el=q('voiceSourceStatus');if(!el)return;
+   el.textContent=text;el.className='sv2-voice-badge'+(kind==='warn'?' warn':kind==='bad'?' bad':'');
+ };
+ SpeechService.prototype.setMeter=function(value=0){const el=q('speechMeter');if(el)el.style.width=`${Math.max(4,Math.min(100,Math.round(value)))}%`;};
+ SpeechService.prototype.setMicV2=function(on,label=''){
+   this.setMic(on);const b=q('micButton'),l=q('micLabel');if(b){b.setAttribute('aria-label',on?'Stop recording':'Start speaking');b.textContent=on?'■':'🎤';}
+   if(l&&label)l.textContent=label;if(!on)this.setMeter(4);
+ };
+ SpeechService.prototype.refreshVoiceStatus=async function(){
+   const tts=(localStorage.getItem('anasV11TtsProxy')||'').trim();
+   if(tts){this.setVoiceBadge('👨‍🏫 Ryan · Azure configured');return;}
+   const voices=await this.ensureBrowserVoices();
+   const maleGB=voices.find(v=>isGB(v)&&knownMale(v));
+   if(maleGB){this.setVoiceBadge(`👨 ${maleGB.name} · device en-GB`);return;}
+   const maleEn=voices.find(v=>isEnglish(v)&&knownMale(v));
+   if(maleEn){this.setVoiceBadge(`👨 ${maleEn.name} · device fallback`,'warn');return;}
+   if(voices.some(isGB)){this.setVoiceBadge('⚠ en-GB device voice · gender not guaranteed','warn');return;}
+   this.setVoiceBadge('⚠ Device speech fallback · Ryan needs Azure','warn');
+ };
+
+ SpeechService.prototype.selectBrowserVoice=function(voices,request){
+   if(!String(request.locale||'').toLowerCase().startsWith('en')){
+     const exact=String(request.locale||'').toLowerCase();
+     return voices.find(v=>normLang(v)===exact)||voices.find(v=>normLang(v).startsWith(exact.slice(0,2)))||null;
+   }
+   const pool=[...voices].filter(isEnglish);
+   const ranked=pool.map(v=>{
+     let n=0;if(isGB(v))n+=1200;else n+=120;
+     if(knownMale(v))n+=800;
+     if(/ryan/i.test(v.name||''))n+=900;
+     if(/natural|neural|online|enhanced|premium/i.test(v.name||''))n+=90;
+     if(femalePatterns.some(re=>re.test(String(v.name||''))))n-=700;
+     return {v,n};
+   }).sort((a,b)=>b.n-a.n);
+   return ranked[0]?.v||null;
+ };
+
+ const originalAzure=SpeechService.prototype.playAzure;
+ SpeechService.prototype.playAzure=async function(request,endpoint,token){
+   if(String(request.locale).startsWith('en'))this.setVoiceBadge('👨‍🏫 Ryan · Azure');
+   try{return await originalAzure.call(this,request,endpoint,token);}
+   catch(err){if(String(request.locale).startsWith('en'))this.setVoiceBadge('⚠ Azure unavailable · using device voice','warn');throw err;}
+ };
+
+ SpeechService.prototype.playBrowser=async function(request,token){
+   if(!('speechSynthesis' in window)){this.setVoiceBadge('✕ Speech unavailable in this browser','bad');return false;}
+   const voices=await this.ensureBrowserVoices();if(token!==this.playbackToken)return false;
+   let spoken=request.text;if(request.mode==='phoneme'&&request.phoneme)spoken=PHONICS_SOUND_MAP[request.phoneme]||request.text;
+   const utterance=new SpeechSynthesisUtterance(spoken);utterance.lang=request.locale;
+   const isArabic=String(request.locale||'').toLowerCase().startsWith('ar');
+   utterance.rate=isArabic?Math.min(request.speed.browserRate,request.speedId==='slow'?.58:.84):request.speed.browserRate;
+   utterance.pitch=isArabic?1.02:.94;utterance.volume=1;
+   const selected=this.selectBrowserVoice(voices,request);if(selected)utterance.voice=selected;
+   if(String(request.locale).startsWith('en')){
+     if(selected&&knownMale(selected)&&isGB(selected))this.setVoiceBadge(`👨 ${selected.name} · device en-GB`);
+     else if(selected&&knownMale(selected))this.setVoiceBadge(`👨 ${selected.name} · device fallback`,'warn');
+     else if(selected)this.setVoiceBadge(`⚠ ${selected.name} · gender not guaranteed`,'warn');
+     else this.setVoiceBadge('⚠ System English voice · Ryan needs Azure','warn');
+   }
+   return new Promise(resolve=>{
+     let done=false;const finish=ok=>{if(done)return;done=true;resolve(ok)};
+     utterance.onend=()=>finish(true);utterance.onerror=()=>finish(false);
+     setTimeout(()=>{if(token!==this.playbackToken)return finish(false);try{speechSynthesis.cancel();speechSynthesis.speak(utterance);if(speechSynthesis.paused)speechSynthesis.resume();}catch{finish(false)}},55);
+   });
+ };
+
+ SpeechService.prototype.wordDistance=function(a,b){
+   a=this.normalize(a).split(/\s+/).filter(Boolean);b=this.normalize(b).split(/\s+/).filter(Boolean);
+   const m=a.length,n=b.length,d=Array.from({length:m+1},()=>Array(n+1).fill(0));
+   for(let i=0;i<=m;i++)d[i][0]=i;for(let j=0;j<=n;j++)d[0][j]=j;
+   for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+   return {distance:d[m][n],max:Math.max(1,m,n)};
+ };
+ SpeechService.prototype.recognitionMatch=function(target,heard){
+   const A=this.normalize(target),B=this.normalize(heard);if(!A||!B)return 0;if(A===B)return 100;
+   const wd=this.wordDistance(A,B);const wordScore=Math.max(0,100*(1-wd.distance/wd.max));
+   const char=(x,y)=>{const m=x.length,n=y.length,d=Array.from({length:m+1},()=>Array(n+1).fill(0));for(let i=0;i<=m;i++)d[i][0]=i;for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(x[i-1]===y[j-1]?0:1));return Math.max(0,100*(1-d[m][n]/Math.max(1,m,n)))};
+   return Math.round(Math.max(wordScore,char(A,B)*.86));
+ };
+ SpeechService.prototype.renderWordFeedback=function(words=[]){
+   const root=q('wordFeedback');if(!root)return;root.innerHTML='';
+   words.slice(0,20).forEach(item=>{const word=String(item.word||item.Word||'').trim();if(!word)return;const raw=item.accuracyScore??item.AccuracyScore??item.score??item.PronunciationAssessment?.AccuracyScore;const score=Number(raw);const cls=Number.isFinite(score)?(score>=80?'good':score>=60?'mid':'retry'):'';const div=document.createElement('div');div.className=`sv2-word ${cls}`;div.innerHTML=`<b>${word.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</b><small>${Number.isFinite(score)?Math.round(score):'heard'}</small>`;root.appendChild(div);});
+ };
+ SpeechService.prototype.extractAzureWords=function(d){
+   if(Array.isArray(d?.words))return d.words;if(Array.isArray(d?.wordResults))return d.wordResults;
+   if(Array.isArray(d?.NBest?.[0]?.Words))return d.NBest[0].Words;
+   if(Array.isArray(d?.RecognitionResult?.NBest?.[0]?.Words))return d.RecognitionResult.NBest[0].Words;
+   return [];
+ };
+ SpeechService.prototype.showBrowserMatch=function(target,heard,score){
+   const panel=document.querySelector('#speakPage .score-panel');panel?.classList.add('browser-check');
+   const ring=q('scoreRing');ring?.style.setProperty('--score',score);if(q('scoreNum'))q('scoreNum').textContent=score;
+   ['accScore','fluScore','compScore'].forEach(id=>{if(q(id))q(id).textContent='—'});
+   if(q('speechModeNote'))q('speechModeNote').textContent='Device recognition fallback: this score is text-match only, not a pronunciation score.';
+   if(q('heardText'))q('heardText').textContent=`I heard: “${heard}”`;
+   const targetWords=this.normalize(target).split(/\s+/),heardWords=this.normalize(heard).split(/\s+/);
+   this.renderWordFeedback(targetWords.map((word,i)=>({word,score:word===heardWords[i]?100:(heardWords.includes(word)?78:35)})));
+   if(q('coachFeedback'))q('coachFeedback').textContent=score>=90?'Great — the device recognized the target clearly.':score>=65?'Close. Listen once more, then try the complete target again.':'Listen to Ryan slowly, then try again. The device heard different wording.';
+   if(q('coachStatus'))q('coachStatus').textContent=score>=90?'Recognized clearly ✓':'Practice complete — try again when ready.';
+ };
+
+ SpeechService.prototype.cleanupCapture=function(){
+   try{clearTimeout(this._hardStopTimer);clearTimeout(this._silenceTimer);cancelAnimationFrame(this._vadFrame)}catch{}
+   try{this._audioContext?.close()}catch{};this._audioContext=null;this._analyser=null;this._vadFrame=null;
+   if(this._captureStream){try{this._captureStream.getTracks().forEach(t=>t.stop())}catch{};this._captureStream=null;}
+ };
+ SpeechService.prototype.bestRecorderMime=function(){
+   if(!window.MediaRecorder)return '';
+   const list=['audio/webm;codecs=opus','audio/mp4','audio/webm','audio/ogg;codecs=opus'];
+   return list.find(x=>MediaRecorder.isTypeSupported?.(x))||'';
+ };
+ SpeechService.prototype.startVoiceActivityStop=function(stream,recorder){
+   const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+   try{
+     const ctx=new AC(),src=ctx.createMediaStreamSource(stream),an=ctx.createAnalyser();an.fftSize=512;src.connect(an);this._audioContext=ctx;this._analyser=an;
+     const data=new Uint8Array(an.fftSize);let speechStarted=false,lastVoice=performance.now(),start=performance.now();
+     const loop=()=>{if(recorder.state!=='recording')return;an.getByteTimeDomainData(data);let sum=0;for(const v of data){const x=(v-128)/128;sum+=x*x}const rms=Math.sqrt(sum/data.length);const meter=Math.min(100,Math.max(4,rms*720));this.setMeter(meter);const now=performance.now();if(rms>.035){speechStarted=true;lastVoice=now;if(q('coachStatus'))q('coachStatus').textContent='I can hear you… keep going.';}if(speechStarted&&now-lastVoice>1250&&now-start>1100){try{recorder.stop()}catch{};return;}this._vadFrame=requestAnimationFrame(loop)};this._vadFrame=requestAnimationFrame(loop);
+   }catch{}
+ };
+
+ SpeechService.prototype.toggle=async function(){
+   if(!window.isSecureContext && !navigator.mediaDevices?.getUserMedia){if(q('coachStatus'))q('coachStatus').textContent='Microphone access requires HTTPS or a trusted local browser context.';if(q('speechModeNote'))q('speechModeNote').textContent='Open this app from HTTPS for reliable microphone access on mobile.';this.app.toast('Microphone access is blocked in this browser context. Use HTTPS for speaking practice.');return false;}
+   if(this.recording){try{if(this.mediaRecorder?.state==='recording')this.mediaRecorder.stop();else this.recognition?.stop()}catch{};return;}
+   const proxy=(localStorage.getItem('anasV11Proxy')||'').trim();
+   if(proxy&&navigator.mediaDevices?.getUserMedia&&window.MediaRecorder)return this.startAzureAssessment(proxy);
+   return this.startBrowserAssessment();
+ };
+ SpeechService.prototype.startBrowserAssessment=function(){
+   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const target=this.app.speakTarget;
+   this.app.resetScores();this.renderWordFeedback([]);document.querySelector('#speakPage .score-panel')?.classList.add('browser-check');
+   if(!SR){this.setMicV2(false,'Speech recognition is not available in this browser. You can still listen and repeat.');if(q('speechModeNote'))q('speechModeNote').textContent='Speaking assessment needs the Azure pronunciation endpoint on this browser.';this.app.toast('Speaking recognition is unavailable here. Azure Pronunciation Assessment is recommended.');return false;}
+   this.recognition=new SR();const rec=this.recognition;rec.lang='en-GB';rec.continuous=false;rec.interimResults=true;rec.maxAlternatives=3;let finalText='';let bestInterim='';
+   rec.onstart=()=>{this.setMicV2(true,'Speak now. It stops automatically when you finish.');if(q('coachStatus'))q('coachStatus').textContent='Listening…';if(q('speechModeNote'))q('speechModeNote').textContent='Device recognition fallback — wording check only.';};
+   rec.onresult=e=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0]?.transcript||'';if(e.results[i].isFinal)finalText+=(finalText?' ':'')+t;else interim+=(interim?' ':'')+t;}bestInterim=interim||bestInterim;if(q('heardText'))q('heardText').textContent=`Hearing: “${finalText||interim}”`;this.setMeter(68);};
+   rec.onerror=e=>{this.setMicV2(false,'Tap the microphone to try again.');if(q('coachStatus'))q('coachStatus').textContent=e.error==='not-allowed'?'Microphone permission is blocked. Allow it in browser site settings.':'Recognition stopped. You can listen and try again.';};
+   rec.onend=()=>{this.setMicV2(false,'Tap once and speak. Recording stops automatically.');const heard=(finalText||bestInterim).trim();if(heard){const score=this.recognitionMatch(target,heard);this.showBrowserMatch(target,heard,score);this.app.state.speaking++;this.app.persist();}else if(q('coachStatus'))q('coachStatus').textContent='I did not hear a complete answer. Tap and try again.';};
+   try{rec.start();return true}catch{this.setMicV2(false,'Tap to try again.');this.app.toast('Could not start microphone recognition.');return false;}
+ };
+ SpeechService.prototype.startAzureAssessment=async function(proxy){
+   let stream=null;const target=this.app.speakTarget;this.renderWordFeedback([]);document.querySelector('#speakPage .score-panel')?.classList.remove('browser-check');
+   try{
+     stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true},video:false});this._captureStream=stream;
+     const mime=this.bestRecorderMime(),opts=mime?{mimeType:mime}:undefined,recorder=new MediaRecorder(stream,opts),chunks=[];this.mediaRecorder=recorder;this.setMicV2(true,'Speak now. I will stop after about 1 second of silence.');this.app.resetScores();
+     if(q('speechModeNote'))q('speechModeNote').textContent='Azure Pronunciation Assessment · en-GB · real pronunciation feedback.';if(q('coachStatus'))q('coachStatus').textContent='Recording… start speaking.';
+     recorder.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};
+     recorder.onerror=()=>{this.cleanupCapture();this.setMicV2(false,'Recording error. Tap to try again.');};
+     recorder.onstop=async()=>{
+       this.setMicV2(false,'Analyzing your pronunciation…');this.cleanupCapture();if(!chunks.length){if(q('coachStatus'))q('coachStatus').textContent='No audio was captured. Try again.';return;}
+       const actualMime=recorder.mimeType||mime||chunks[0]?.type||'audio/webm';const ext=actualMime.includes('mp4')?'m4a':actualMime.includes('ogg')?'ogg':'webm';const fd=new FormData();fd.append('audio',new Blob(chunks,{type:actualMime}),`practice.${ext}`);fd.append('referenceText',target);fd.append('locale','en-GB');fd.append('audioMimeType',actualMime);fd.append('engineVersion','speech-v2');
+       const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),25000);
+       try{
+         const response=await fetch(proxy,{method:'POST',body:fd,signal:controller.signal});if(!response.ok)throw new Error(`Speech service ${response.status}`);const d=await response.json();
+         if(this.app.speakTarget!==target)return;const valid=x=>Number.isFinite(Number(x))&&Number(x)>=0&&Number(x)<=100;const overall=Number(d.pronScore??d.pronunciationScore??d.PronunciationScore??d.NBest?.[0]?.PronunciationAssessment?.PronScore);const acc=Number(d.accuracyScore??d.AccuracyScore??d.NBest?.[0]?.PronunciationAssessment?.AccuracyScore),flu=Number(d.fluencyScore??d.FluencyScore??d.NBest?.[0]?.PronunciationAssessment?.FluencyScore),comp=Number(d.completenessScore??d.CompletenessScore??d.NBest?.[0]?.PronunciationAssessment?.CompletenessScore);
+         if(!valid(overall))throw new Error('Missing pronunciation score');const words=this.extractAzureWords(d);this.renderWordFeedback(words);this.app.showScores(overall,valid(acc)?acc:NaN,valid(flu)?flu:NaN,valid(comp)?comp:NaN,overall>=85?'Excellent pronunciation. Move on when ready.':overall>=65?'Good attempt. Listen slowly to the weaker words and try once more.':'Listen to Ryan slowly, then repeat the target one more time.');
+         if(q('speechModeNote'))q('speechModeNote').textContent='Azure Pronunciation Assessment · real pronunciation score.';if(q('heardText')&&d.recognizedText)q('heardText').textContent=`I heard: “${d.recognizedText}”`;this.app.state.speaking++;this.app.persist();
+       }catch(err){if(q('coachStatus'))q('coachStatus').textContent=err?.name==='AbortError'?'Assessment timed out. Check the connection and try again.':'Pronunciation service unavailable. You can still listen and practise.';if(q('speechModeNote'))q('speechModeNote').textContent='Azure assessment could not be reached. No pronunciation score was recorded.';}
+       finally{clearTimeout(timeout)}
+     };
+     recorder.start(250);this.startVoiceActivityStop(stream,recorder);this._hardStopTimer=setTimeout(()=>{try{if(recorder.state==='recording')recorder.stop()}catch{}},12000);return true;
+   }catch(err){this.cleanupCapture();this.setMicV2(false,'Tap the microphone to try again.');if(q('coachStatus'))q('coachStatus').textContent=err?.name==='NotAllowedError'?'Microphone permission is blocked. Allow microphone access in the browser settings.':'Microphone could not start. Check browser permissions and try again.';return false;}
+ };
+
+ const oldOpenSpeak=AnasApp.prototype.openSpeak;
+ AnasApp.prototype.openSpeak=function(text,icon='🎤'){oldOpenSpeak.call(this,text,icon);const w=q('wordFeedback');if(w)w.innerHTML='';setTimeout(()=>this.speech.refreshVoiceStatus(),60)};
+ const oldReset=AnasApp.prototype.resetScores;
+ AnasApp.prototype.resetScores=function(){oldReset.call(this);const w=q('wordFeedback');if(w)w.innerHTML='';if(q('micLabel'))q('micLabel').textContent='Tap once and speak. Recording stops automatically after silence.';if(q('speechMeter'))q('speechMeter').style.width='4%';if(q('speechModeNote'))q('speechModeNote').textContent=(localStorage.getItem('anasV11Proxy')||'').trim()?'Azure Pronunciation Assessment is configured.':'Browser fallback checks recognized wording only. Add Azure Pronunciation Assessment for real scoring.';};
+ setTimeout(()=>window.app?.speech?.refreshVoiceStatus?.(),250);
+})();
+
 
 window.app = new AnasApp();
 if(!window.app.plusAdventure)window.app.plusAdventure=new PlusAdventure(window.app);
